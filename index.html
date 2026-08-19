@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Equivalencias LCC - Plan 2004 ↔ Plan 2025 | Universidad Veracruzana</title>
+<style>
+  :root {
+    --azul-uv: #18529D;
+    --azul-uv-dark: #0f3a73;
+    --azul-uv-light: #e8f0fa;
+    --verde-uv: #28AD56;
+    --verde-uv-dark: #1d8240;
+    --verde-uv-light: #e6f7ec;
+    --alerta: #d97706;
+    --alerta-bg: #fff8eb;
+    --error: #c53030;
+    --error-bg: #fff5f5;
+    --gris-texto: #4a5568;
+    --gris-claro: #f5f7fa;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: linear-gradient(135deg, var(--azul-uv) 0%, var(--verde-uv) 100%);
+    min-height: 100vh;
+    padding: 20px;
+    color: #333;
+  }
+  .container {
+    max-width: 950px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    overflow: hidden;
+  }
+  header {
+    background: var(--azul-uv);
+    color: #fff;
+    padding: 28px 25px;
+    text-align: center;
+    border-bottom: 4px solid var(--verde-uv);
+  }
+  header h1 { font-size: 1.5em; margin-bottom: 6px; }
+  header p { opacity: 0.95; font-size: 0.95em; }
+  header .uv-badge {
+    display: inline-block;
+    background: var(--verde-uv);
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 0.8em;
+    margin-bottom: 10px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  .controls {
+    padding: 22px;
+    background: var(--gris-claro);
+    border-bottom: 1px solid #e1e4e8;
+  }
+  .controls label {
+    font-weight: 600;
+    display: block;
+    margin-bottom: 8px;
+    color: var(--azul-uv);
+  }
+  .controls select, .controls input {
+    width: 100%;
+    padding: 11px 12px;
+    border: 2px solid #cbd5e0;
+    border-radius: 6px;
+    font-size: 1em;
+    margin-bottom: 12px;
+    background: #fff;
+  }
+  .controls select:focus, .controls input:focus {
+    outline: none;
+    border-color: var(--azul-uv);
+    box-shadow: 0 0 0 3px rgba(24,82,157,0.15);
+  }
+  .direction-info {
+    background: var(--azul-uv-light);
+    border-left: 4px solid var(--azul-uv);
+    padding: 11px 14px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    color: var(--azul-uv-dark);
+    margin-bottom: 14px;
+  }
+  .result {
+    padding: 25px;
+    min-height: 200px;
+  }
+  .placeholder {
+    text-align: center;
+    color: #718096;
+    padding: 40px 20px;
+    font-style: italic;
+  }
+  .card {
+    background: #f8fafc;
+    border-left: 5px solid var(--azul-uv);
+    padding: 18px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+  }
+  .card h3 {
+    color: var(--azul-uv);
+    margin-bottom: 10px;
+    font-size: 1.1em;
+  }
+  .card.destino {
+    border-left-color: var(--verde-uv);
+  }
+  .card.destino h3 {
+    color: var(--verde-uv-dark);
+  }
+  .badge {
+    display: inline-block;
+    padding: 4px 11px;
+    border-radius: 14px;
+    font-size: 0.82em;
+    font-weight: 600;
+    margin-right: 6px;
+    margin-top: 4px;
+  }
+  .badge-cred { background: var(--verde-uv-light); color: var(--verde-uv-dark); }
+  .badge-area { background: var(--azul-uv-light); color: var(--azul-uv-dark); }
+  .no-equiv {
+    background: var(--error-bg);
+    border-left-color: var(--error);
+  }
+  .no-equiv h3 { color: var(--error); }
+  .transferencia {
+    background: var(--alerta-bg);
+    border-left-color: var(--alerta);
+  }
+  .transferencia h3 { color: var(--alerta); }
+  footer {
+    text-align: center;
+    padding: 18px;
+    background: var(--gris-claro);
+    font-size: 0.85em;
+    color: var(--gris-texto);
+    border-top: 3px solid var(--verde-uv);
+  }
+  footer strong { color: var(--azul-uv); }
+  .arrow {
+    text-align: center;
+    font-size: 1.8em;
+    color: var(--verde-uv);
+    margin: -5px 0;
+    font-weight: bold;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <div class="uv-badge">UNIVERSIDAD VERACRUZANA</div>
+    <h1>📚 Licenciatura en Ciencias de la Comunicación - Equivalencias</h1>
+    <p>Consulta las equivalencias entre el Plan 2004 y el Plan 2025</p>
+  </header>
+
+  <div class="controls">
+    <label for="direccion">🔁 Dirección de la consulta:</label>
+    <select id="direccion">
+      <option value="2004a2025">Soy del Plan 2004 → quiero ver la equivalencia en el Plan 2025</option>
+      <option value="2025a2004">Soy del Plan 2025 → quiero ver la equivalencia en el Plan 2004</option>
+    </select>
+
+    <div class="direction-info" id="infoDireccion">
+      Selecciona un Plan para conocer su equivalente.
+    </div>
+
+    <label for="buscar">🔍 Busca o escribe el nombre la experiencia educativa:</label>
+    <input type="text" id="buscar" placeholder="Escribe el nombre de la experiencia educativa..." list="materias" autocomplete="off">
+    <datalist id="materias"></datalist>
+  </div>
+
+  <div class="result" id="resultado">
+    <div class="placeholder">
+      Selecciona un Plan para conocer su equivalente.
+    </div>
+  </div>
+
+  <footer>
+    <strong>Facultad de Ciencias y Técnicas de la Comunicación</strong><br>
+    Universidad Veracruzana · 2026<br>
+    <small>⚠️ La equivalencia definitiva se trámita en la Secretaría de la facultad.</small>
+  </footer>
+</div>
+
+<script>
+// Datos completos extraídos de EQUIVALENCIA 2004-2025.xlsx
+const equivalencias = [
+  {m2004:"CULTURA E IDENTIDAD EN AMERICA LATINA I", cr2004:6, area2004:"Básica", m2025:"ESTUDIOS CULTURALES LATINOAMERICANOS", cr2025:6, area2025:"Básica"},
+  {m2004:"ECONOMIA Y COMUNICACION", cr2004:6, area2004:"Básica", m2025:"SOCIOECONOMIA DE LA COMUNICACION", cr2025:6, area2025:"Básica"},
+  {m2004:"INTRODUCCION A LA FILOSOFIA DE LA COMUNICACION", cr2004:6, area2004:"Básica", m2025:"FILOSOFIA DE LA COMUNICACION", cr2025:6, area2025:"Básica"},
+  {m2004:"CULTURA E IDENTIDAD EN AMERICA LATINA II", cr2004:6, area2004:"Disciplinaria", m2025:"COMUNICACION INTERCULTURAL", cr2025:6, area2025:"Disciplinaria"},
+  {m2004:"ETICA Y COMUNICACION", cr2004:6, area2004:"Disciplinaria", m2025:"ETICA Y COMUNICACION", cr2025:6, area2025:"Disciplinaria"},
+  {m2004:"FILOSOFIA DE LA COMUNICACION", cr2004:6, area2004:"Disciplinaria", m2025:"FILOSOFIA Y PENSAMIENTO CONTEMPORANEO", cr2025:6, area2025:"Disciplinaria"},
+  {m2004:"HISTORIA CONTEMPORANEA DE MEXICO", cr2004:5, area2004:"Disciplinaria", m2025:"PERSPECTIVA HISTORICA DE LOS MEDIOS DE COMUNICACION EN MEXICO", cr2025:5, area2025:"Disciplinaria"},
+  {m2004:"PSICOLOGIA SOCIAL Y COMUNICACION", cr2004:8, area2004:"Disciplinaria", m2025:"COMUNICACION APLICADA EN PSICOLOGIA SOCIAL", cr2025:8, area2025:"Disciplinaria"},
+  {m2004:"REGIMEN JURIDICO DE LOS MEDIOS COMUNICACION", cr2004:8, area2004:"Disciplinaria", m2025:"MARCO LEGAL DE LA COMUNICACION", cr2025:8, area2025:"Disciplinaria"},
+  {m2004:"SISTEMA POLITICO MEXICANO Y COMUNICACION", cr2004:8, area2004:"Disciplinaria", m2025:"ESTADO Y SOCIEDAD", cr2025:8, area2025:"Disciplinaria"},
+  {m2004:"INTRODUCCION A LA TEORIA DE LA COMUNICACION", cr2004:8, area2004:"Básica", m2025:"GENESIS Y EVOLUCION DE LA COMUNICACION", cr2025:8, area2025:"Básica"},
+  {m2004:"PSICOLOGIA COMUNICACION E INFORMACION", cr2004:8, area2004:"Básica", m2025:"TEORIAS PSICOLOGICAS EN LA COMUNICACION", cr2025:8, area2025:"Básica"},
+  {m2004:"COMUNICACION Y OPINION PUBLICA", cr2004:8, area2004:"Disciplinaria", m2025:"OPINION PUBLICA", cr2025:8, area2025:"Disciplinaria"},
+  {m2004:"SOCIOLOGIA DE LA COMUNICACION", cr2004:8, area2004:"Disciplinaria", m2025:"TENDENCIAS SOCIOLOGICAS DE LA COMUNICACION", cr2025:8, area2025:"Disciplinaria"},
+  {m2004:"TEORIA DE LA COMUNICACION I", cr2004:8, area2004:"Disciplinaria", m2025:"TEORIAS CLASICAS DE LA COMUNICACION", cr2025:8, area2025:"Disciplinaria"},
+  {m2004:"TEORIA DE LA COMUNICACION II", cr2004:8, area2004:"Disciplinaria", m2025:"ESTUDIOS CONTEMPORANEOS DE LA COMUNICACION", cr2025:8, area2025:"Disciplinaria"},
+  {m2004:"TEORIAS DE LA ADMINISTRACION PARA LA COMUNICACION", cr2004:6, area2004:"Básica", m2025:"TEORIAS ADMINISTRATIVAS PARA LA COMUNICACION", cr2025:6, area2025:"Disciplinaria"},
+  {m2004:"COMUNICACION INTERNA EN LAS ORGANIZACIONES", cr2004:6, area2004:"Disciplinaria", m2025:"ENDOMARKETING", cr2025:6, area2025:"Disciplinaria"},
+  {m2004:"ESTRATEGIAS DE COMUNICACION CORPORATIVA", cr2004:4, area2004:"Disciplinaria", m2025:"COMUNICACION CORPORATIVA", cr2025:5, area2025:"Disciplinaria"},
+  {m2004:"PROYECTOS DE COMUNICACION Y DESARROLLO DE EMPRENDEDORES", cr2004:5, area2004:"Disciplinaria", m2025:"EMPRENDIMIENTO EN COMUNICACION", cr2025:6, area2025:"Disciplinaria"},
+  {m2004:"RELACIONES PUBLICAS CORPORATIVAS", cr2004:6, area2004:"Disciplinaria", m2025:"RELACIONES PUBLICAS APLICADAS", cr2025:6, area2025:"Disciplinaria"},
+  {m2004:"TALLER DE FOTOGRAFIA I", cr2004:6, area2004:"Básica", m2025:"FOTOGRAFIA BASICA", cr2025:6, area2025:"Básica"},
+  {m2004:"TALLER DE FOTOGRAFIA II", cr2004:6, area2004:"Disciplinaria", m2025:"FOTOGRAFIA ESPECIALIZADA", cr2025:4, area2025:"Disciplinaria"},
+  {m2004:"TALLER DE TELEVISION Y VIDEO I", cr2004:5, area2004:"Disciplinaria", m2025:"PRINCIPIOS DE LA PRODUCCION AUDIOVISUAL", cr2025:6, area2025:"Disciplinaria"},
+  {m2004:"TALLER DE HIPERMEDIA I", cr2004:5, area2004:"Disciplinaria", m2025:"HIPERMEDIA", cr2025:6, area2025:"Disciplinaria"},
+  {m2004:"INTRODUCCION A LA TEORIA DEL LENGUAJE", cr2004:8, area2004:"Básica", m2025:"TEORIA DEL LENGUAJE", cr2025:8, area2025:"Básica"},
+  {m2004:"SEMIOTICA GENERAL", cr2004:8, area2004:"Disciplinaria", m2025:"SEMIOTICA SOCIAL", cr2025:6, area2025:"Disciplinaria"},
+  {m2004:"TEORIA DEL LENGUAJE", cr2004:8, area2004:"Disciplinaria", m2025:"DISCURSO Y PODER", cr2025:6, area2025:"Disciplinaria"},
+  {m2004:"TRADUCCION DE TEXTOS EN COMUNICACION", cr2004:4, area2004:"Disciplinaria", m2025:"CULTURA Y LINGUISTICA DE TEXTOS EN COMUNICACION", cr2025:4, area2025:"Disciplinaria"},
+  {m2004:"INTRODUCCION A LOS METODOS DE LAS CIENCIAS SOCIALES", cr2004:8, area2004:"Básica", m2025:"INVESTIGACION EN EL CAMPO DE LA COMUNICACION", cr2025:8, area2025:"Básica"},
+  {m2004:"INVESTIGACION CUANTITATIVA Y CUALITATIVA EN COMUNICACION", cr2004:8, area2004:"Disciplinaria", m2025:"PLANEACION Y DISEÑO DE PROYECTOS DE INVESTIGACION", cr2025:6, area2025:"Disciplinaria"},
+  {m2004:"TECNICAS DE INVESTIGACION CUANTITATIVA Y CUALITATIVA EN COMUNICACION", cr2004:6, area2004:"Disciplinaria", m2025:"LABORATORIO DE INVESTIGACION EN COMUNICACION", cr2025:6, area2025:"Disciplinaria"},
+  {m2004:"GUIONISMO", cr2004:3, area2004:"Básica", m2025:"GUIONISMO", cr2025:4, area2025:"Básica"},
+  {m2004:"TALLER DE REDACCION: NOTA INFORMATIVA Y ENTREVISTA", cr2004:4, area2004:"Básica", m2025:"TEXTOS PERIODISTICOS INFORMATIVOS MULTIMEDIOS", cr2025:5, area2025:"Básica"},
+  {m2004:"TALLER DE REDACCION: CRONICA", cr2004:4, area2004:"Disciplinaria", m2025:"PERIODISMO NARRATIVO MULTIMEDIA", cr2025:4, area2025:"Disciplinaria"},
+  {m2004:"TALLER DE REDACCION: REPORTAJE", cr2004:4, area2004:"Disciplinaria", m2025:"PERIODISMO INTERPRETATIVO MULTIMEDIA", cr2025:4, area2025:"Disciplinaria"},
+  {m2004:"PERIODISMO DE INVESTIGACION", cr2004:6, area2004:"Disciplinaria", m2025:"PERIODISMO DE INVESTIGACION", cr2025:6, area2025:"Disciplinaria"},
+  {m2004:"TALLER DE DISEÑO EDITORIAL", cr2004:4, area2004:"Disciplinaria", m2025:"DISEÑO Y PRODUCCION EDITORIAL", cr2025:5, area2025:"Disciplinaria"},
+  {m2004:"COMUNICACION Y DESARROLLO ECONOMICO SUSTENTABLE", cr2004:5, area2004:"Disciplinaria", m2025:"ECONOMIA Y COMUNICACION PARA EL DESARROLLO SUSTENTABLE", cr2025:5, area2025:"Disciplinaria"},
+  {m2004:"PLANEACION Y COMUNICACION ESTRATEGICA", cr2004:8, area2004:"Disciplinaria", m2025:"COMUNICACION PARA EL DESARROLLO DEL TALENTO HUMANO", cr2025:5, area2025:"Disciplinaria"},
+  {m2004:"INTRODUCCION A LA COMUNICACION PUBLICITARIA", cr2004:6, area2004:"Básica", m2025:"INTRODUCCION A LA COMUNICACION PUBLICITARIA Y POLITICA", cr2025:6, area2025:"Básica"},
+  {m2004:"CAMPAÑAS DE COMUNICACION PUBLICITARIA Y POLITICA", cr2004:6, area2004:"Disciplinaria", m2025:"CAMPAÑAS PUBLICITARIAS Y POLITICAS", cr2025:4, area2025:"Terminal Comunicación Organizacional"},
+  {m2004:"DISEÑO Y CREATIVIDAD GRAFICA EN PUBLICIDAD", cr2004:6, area2004:"Disciplinaria", m2025:"DISEÑO CREATIVO DE MENSAJES PUBLICITARIOS Y POLITICOS", cr2025:5, area2025:"Disciplinaria"},
+  {m2004:"ESTRATEGIAS PARA LA PRODUCCION DE PUBLICIDAD Y PROPAGANDA", cr2004:5, area2004:"Disciplinaria", m2025:"ESTRATEGIAS DE COMUNICACION POLITICA", cr2025:5, area2025:"Disciplinaria"},
+  {m2004:"FUNDAMENTOS DEL MEDIO RADIOFONICO", cr2004:4, area2004:"Básica", m2025:"FUNDAMENTOS DE LA PRODUCCION SONORA", cr2025:5, area2025:"Básica"},
+  {m2004:"REALIZACION DE PROYECTOS RADIOFONICOS", cr2004:4, area2004:"Disciplinaria", m2025:"PRODUCCION DE PROYECTOS SONOROS", cr2025:4, area2025:"Disciplinaria"},
+  {m2004:"ANALISIS CINEMATOGRAFICO", cr2004:6, area2004:"Terminal Nuevas Tecnologías", m2025:"CINE, ESTETICA Y REALIZACION", cr2025:4, area2025:"Terminal Comunicación Digital"},
+  {m2004:"ANIMACION DIGITAL", cr2004:4, area2004:"Terminal Nuevas Tecnologías", m2025:"ANIMACION MULTIPLATAFORMA", cr2025:5, area2025:"Terminal Comunicación Digital"},
+  {m2004:"PROYECTOS RADIOFONICOS EXPERIMENTALES", cr2004:4, area2004:"Terminal Nuevas Tecnologías", m2025:"PRODUCCION SONORA AVANZADA", cr2025:5, area2025:"Terminal Comunicación Digital"},
+  {m2004:"TALLER DE HIPERMEDIA II", cr2004:5, area2004:"Terminal Nuevas Tecnologías", m2025:"PRODUCCION DE INTERFACES GRAFICAS INTERACTIVAS", cr2025:5, area2025:"Terminal Comunicación Digital"},
+  {m2004:"TALLER DE LA COMUNICACION GRAFICA", cr2004:4, area2004:"Terminal Nuevas Tecnologías", m2025:"COMUNICACION VISUAL EN MEDIOS DIGITALES", cr2025:4, area2025:"Terminal Comunicación Digital"},
+  {m2004:"TALLER DE TELEVISION Y VIDEO II", cr2004:5, area2004:"Terminal Nuevas Tecnologías", m2025:"CREACION DE CONTENIDOS PARA TELEVISION Y MULTIPLATAFORMA", cr2025:5, area2025:"Terminal Comunicación Digital"},
+  {m2004:"COMPORTAMIENTO ORGANIZACIONAL Y MEJORA CONTINUA", cr2004:5, area2004:"Terminal Comunicación Organizacional", m2025:"PROCESOS DE CAMBIO EN LAS ORGANIZACIONES", cr2025:5, area2025:"Terminal Comunicación Organizacional"},
+  {m2004:"ECONOMIA DE LA INFORMACION Y GLOBALIZACION", cr2004:5, area2004:"Terminal Comunicación Organizacional", m2025:"ECONOMIA DE LA INFORMACION Y GLOBALIZACION", cr2025:5, area2025:"Disciplinaria"},
+  {m2004:"ESTRATEGIAS COMUNICACIONALES PARA LA CAPACITACION", cr2004:6, area2004:"Terminal Comunicación Organizacional", m2025:"COMUNICACION PARA LA FORMACION DE CAPITAL HUMANO", cr2025:5, area2025:"Terminal Comunicación Organizacional"},
+  {m2004:"MEDIOS DE COMUNICACION INTERNA EN EL TRABAJO", cr2004:6, area2004:"Terminal Comunicación Organizacional", m2025:"SOCIAL MEDIA CORPORATIVA", cr2025:5, area2025:"Terminal Comunicación Organizacional"},
+  {m2004:"TEORIA Y PRACTICA DE LA ADMINISTRACION DE EMPRESAS DE COMUNICACION", cr2004:6, area2004:"Terminal Comunicación Organizacional", m2025:"EMPRESAS DE COMUNICACION Y MODELO DE NEGOCIOS", cr2025:5, area2025:"Terminal Comunicación Organizacional"},
+  {m2004:"SERVICIO SOCIAL", cr2004:12, area2004:"Terminal", m2025:"SERVICIO SOCIAL", cr2025:12, area2025:"Terminal"},
+  {m2004:"EXPERIENCIA RECEPCIONAL", cr2004:12, area2004:"Terminal", m2025:"EXPERIENCIA RECEPCIONAL", cr2025:12, area2025:"Terminal"},
+  {m2004:"ANALISIS DEL DISCURSO PERIODISTICO", cr2004:4, area2004:"Terminal Periodismo", m2025:"DISCURSO Y PERIODISMO", cr2025:4, area2025:"Terminal Periodismo"},
+  {m2004:"CORRECCION DEL ESTILO EN MEDIOS DE COMUNICACION", cr2004:4, area2004:"Terminal Periodismo", m2025:"CURADURIA DE DATOS PERIODISTICOS", cr2025:4, area2025:"Terminal Periodismo"},
+  {m2004:"DISEÑO EDITORIAL ASISTIDO POR COMPUTADORA", cr2004:4, area2004:"Terminal Periodismo", m2025:"ESPECIALIZACION EN DISEÑO Y PRODUCCION EDITORIAL", cr2025:4, area2025:"Terminal Periodismo"},
+  {m2004:"PERIODISMO DIGITAL", cr2004:6, area2004:"Terminal Periodismo", m2025:"CIBERPERIODISMO", cr2025:5, area2025:"Terminal Periodismo"},
+  {m2004:"PERIODISMO ESPECIALIZADO", cr2004:6, area2004:"Terminal Periodismo", m2025:"ESPECIALIZACION PERIODISTICA", cr2025:6, area2025:"Terminal Periodismo"},
+  {m2004:"TALLER DE REDACCION: GENEROS DE OPINION", cr2004:4, area2004:"Terminal Periodismo", m2025:"PERIODISMO DE OPINION", cr2025:5, area2025:"Terminal Periodismo"},
+  {m2004:"COMPUTACION BASICA", cr2004:6, area2004:"Básica", m2025:"LITERACIDAD DIGITAL", cr2025:4, area2025:"Básica"},
+  {m2004:"HABILIDADES DEL PENSAMIENTO CRITICO Y CREATIVO", cr2004:6, area2004:"Básica", m2025:"PENSAMIENTO CRITICO PARA LA SOLUCION DE PROBLEMAS", cr2025:4, area2025:"Básica"},
+  {m2004:"INGLES I", cr2004:6, area2004:"Básica", m2025:"LENGUA I", cr2025:4, area2025:"Básica"},
+  {m2004:"INGLES II", cr2004:6, area2004:"Básica", m2025:"LENGUA II", cr2025:4, area2025:"Básica"},
+  {m2004:"LECTURA Y REDACCION A TRAVES DEL ANALISIS DEL MUNDO CONTEMPORANEO", cr2004:6, area2004:"Básica", m2025:"LECTURA Y ESCRITURA DE TEXTOS ACADEMICOS", cr2025:4, area2025:"Básica"},
+  // Materias del Plan 2025 SIN equivalencia en Plan 2004
+  {m2004:null, cr2004:0, area2004:null, m2025:"DISEÑO DEL PROTOCOLO DE INVESTIGACION", cr2025:4, area2025:"Disciplinaria", sinEquivalencia:true},
+  {m2004:null, cr2004:0, area2004:null, m2025:"CONSULTORIA EN COMUNICACION", cr2025:4, area2025:"Terminal Comunicación Organizacional", sinEquivalencia:true},
+  {m2004:null, cr2004:0, area2004:null, m2025:"PRACTICAS PROFESIONALES", cr2025:4, area2025:"Terminal", sinEquivalencia:true}
+];
+
+// Elementos del DOM
+const direccion = document.getElementById('direccion');
+const infoDireccion = document.getElementById('infoDireccion');
+const input = document.getElementById('buscar');
+const datalist = document.getElementById('materias');
+const resultado = document.getElementById('resultado');
+
+// Actualiza datalist y mensaje según la dirección
+function actualizarVista() {
+  const dir = direccion.value;
+  datalist.innerHTML = '';
+  input.value = '';
+  resultado.innerHTML = '<div class="placeholder">Selecciona o escribe una materia para ver su equivalencia.</div>';
+
+  if (dir === '2004a2025') {
+    infoDireccion.textContent = 'Escribe o selecciona una experiencia del Plan 2004 para conocer su equivalencia en el Plan 2025.';
+    equivalencias.forEach(e => {
+      if (e.m2004) {
+        const opt = document.createElement('option');
+        opt.value = e.m2004;
+        datalist.appendChild(opt);
+      }
+    });
+  } else {
+    infoDireccion.textContent = 'Escribe o selecciona una experiencia del Plan 2025 para conocer su equivalencia en el Plan 2004.';
+    equivalencias.forEach(e => {
+      const opt = document.createElement('option');
+      opt.value = e.m2025;
+      datalist.appendChild(opt);
+    });
+  }
+}
+
+direccion.addEventListener('change', actualizarVista);
+actualizarVista();
+
+// Función de renderizado de tarjeta (formato uniforme)
+function renderCard(titulo, nombre, cred, area, esDestino, emoji) {
+  const clase = esDestino ? 'card destino' : 'card';
+  return `
+    <div class="${clase}">
+      <h3>${emoji} ${titulo}</h3>
+      <p><strong>${nombre}</strong></p>
+      <p>
+        <span class="badge badge-cred">${cred} créditos</span>
+        <span class="badge badge-area">${area}</span>
+      </p>
+    </div>`;
+}
+
+// Función genérica que muestra la equivalencia en formato uniforme
+function mostrarEquivalencia(origen, destino, labelOrigen, labelDestino, emojiOrigen, emojiDestino, flecha) {
+  const cambioCred = origen.cr !== destino.cr;
+  const cambioArea = origen.area !== destino.area;
+
+  let html = renderCard(labelOrigen, origen.nombre, origen.cr, origen.area, false, emojiOrigen);
+  html += `<div class="arrow">${flecha}</div>`;
+  html += renderCard(labelDestino, destino.nombre, destino.cr, destino.area, true, emojiDestino);
+
+  if (cambioCred || cambioArea) {
+    html += `<div class="card transferencia">
+      <h3>⚠️ Observaciones</h3>
+      <p>
+        ${cambioCred ? `• Los créditos cambian de <strong>${origen.cr}</strong> (${labelOrigen.split(' ')[2]}) a <strong>${destino.cr}</strong> (${labelDestino.split(' ')[2]}).<br>` : ''}
+        ${cambioArea ? `• El área cambia de <strong>${origen.area}</strong> a <strong>${destino.area}</strong>.` : ''}
+      </p>
+      <p style="margin-top:8px;font-size:0.9em;">Consulta con Control Escolar para validar la aplicación.</p>
+    </div>`;
+  }
+  return html;
+}
+
+// Búsqueda
+input.addEventListener('input', () => {
+  const val = input.value.trim().toUpperCase();
+  if (!val) {
+    resultado.innerHTML = '<div class="placeholder">Selecciona o escribe una materia para ver su equivalencia.</div>';
+    return;
+  }
+
+  const dir = direccion.value;
+
+  if (dir === '2004a2025') {
+    const match = equivalencias.find(e => e.m2004 && e.m2004.toUpperCase() === val);
+    if (!match) {
+      resultado.innerHTML = `<div class="card no-equiv"><h3>❌ Sin equivalencia</h3><p>No se encontró "<strong>${input.value}</strong>" en el catálogo del Plan 2004.</p></div>`;
+      return;
+    }
+    const origen = { nombre: match.m2004, cr: match.cr2004, area: match.area2004 };
+    const destino = { nombre: match.m2025, cr: match.cr2025, area: match.area2025 };
+    resultado.innerHTML = mostrarEquivalencia(
+      origen, destino,
+      'Plan 2004 (origen)',
+      'Equivalencia en Plan 2025',
+      '📖', '✅', '⬇️'
+    );
+  } else {
+    const match = equivalencias.find(e => e.m2025 && e.m2025.toUpperCase() === val);
+    if (!match) {
+      resultado.innerHTML = `<div class="card no-equiv"><h3>❌ No encontrada</h3><p>No se encontró "<strong>${input.value}</strong>" en el catálogo del Plan 2025.</p></div>`;
+      return;
+    }
+    if (match.sinEquivalencia) {
+      resultado.innerHTML = `
+        ${renderCard('Plan 2025 (origen)', match.m2025, match.cr2025, match.area2025, false, '📖')}
+        <div class="arrow">⬇️</div>
+        <div class="card transferencia">
+          <h3>🔸 Sin equivalencia directa al Plan 2004</h3>
+          <p>Esta materia <strong>no tiene equivalencia</strong> con ninguna experiencia educativa del Plan 2004.</p>
+          <p style="margin-top:8px;">Se reconoce únicamente como <strong>transferencia de créditos al Área de Formación de Elección Libre (AFEL)</strong>.</p>
+        </div>`;
+      return;
+    }
+    const origen = { nombre: match.m2025, cr: match.cr2025, area: match.area2025 };
+    const destino = { nombre: match.m2004, cr: match.cr2004, area: match.area2004 };
+    resultado.innerHTML = mostrarEquivalencia(
+      origen, destino,
+      'Plan 2025 (origen)',
+      'Equivalente en Plan 2004 a:',
+      '📖', '✅', '⬆️'
+    );
+  }
+});
+</script>
+</body>
+</html>
