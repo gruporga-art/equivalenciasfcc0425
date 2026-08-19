@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Equivalencias LCC - Plan 2004 ↔ Plan 2025 | Universidad Veracruzana</title>
 <style>
   :root {
@@ -19,43 +19,43 @@
     --gris-texto: #4a5568;
     --gris-claro: #f5f7fa;
   }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
   body {
-    font-family: 'Segoe UI', Tahoma, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     background: linear-gradient(135deg, var(--azul-uv) 0%, var(--verde-uv) 100%);
     min-height: 100vh;
-    padding: 20px;
+    padding: 16px;
     color: #333;
   }
   .container {
-    max-width: 950px;
+    max-width: 800px;
     margin: 0 auto;
     background: #fff;
-    border-radius: 12px;
+    border-radius: 16px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.25);
     overflow: hidden;
   }
   header {
     background: var(--azul-uv);
     color: #fff;
-    padding: 28px 25px;
+    padding: 24px 20px;
     text-align: center;
     border-bottom: 4px solid var(--verde-uv);
   }
-  header h1 { font-size: 1.5em; margin-bottom: 6px; }
-  header p { opacity: 0.95; font-size: 0.95em; }
+  header h1 { font-size: 1.3em; margin-bottom: 6px; line-height: 1.3; }
+  header p { opacity: 0.95; font-size: 0.9em; }
   header .uv-badge {
     display: inline-block;
     background: var(--verde-uv);
     padding: 4px 12px;
     border-radius: 15px;
-    font-size: 0.8em;
+    font-size: 0.75em;
     margin-bottom: 10px;
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: 0.5px;
   }
   .controls {
-    padding: 22px;
+    padding: 20px;
     background: var(--gris-claro);
     border-bottom: 1px solid #e1e4e8;
   }
@@ -64,95 +64,205 @@
     display: block;
     margin-bottom: 8px;
     color: var(--azul-uv);
+    font-size: 0.95em;
   }
-  .controls select, .controls input {
+  .controls select {
     width: 100%;
-    padding: 11px 12px;
+    padding: 12px;
     border: 2px solid #cbd5e0;
-    border-radius: 6px;
-    font-size: 1em;
-    margin-bottom: 12px;
+    border-radius: 8px;
+    font-size: 16px; /* Previene zoom en iOS */
+    margin-bottom: 16px;
     background: #fff;
-  }
-  .controls select:focus, .controls input:focus {
-    outline: none;
-    border-color: var(--azul-uv);
-    box-shadow: 0 0 0 3px rgba(24,82,157,0.15);
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2318529D' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 20px;
   }
   .direction-info {
     background: var(--azul-uv-light);
     border-left: 4px solid var(--azul-uv);
-    padding: 11px 14px;
-    border-radius: 4px;
+    padding: 12px 14px;
+    border-radius: 6px;
     font-size: 0.9em;
     color: var(--azul-uv-dark);
-    margin-bottom: 14px;
+    margin-bottom: 16px;
+    line-height: 1.4;
   }
-  .result {
-    padding: 25px;
-    min-height: 200px;
+  
+  /* Botón de selección móvil */
+  .btn-seleccionar {
+    width: 100%;
+    padding: 14px;
+    background: var(--azul-uv);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: background 0.2s;
   }
-  .placeholder {
+  .btn-seleccionar:active { background: var(--azul-uv-dark); transform: scale(0.98); }
+  
+  .materia-seleccionada {
+    margin-top: 12px;
+    padding: 12px;
+    background: var(--verde-uv-light);
+    border: 1px solid var(--verde-uv);
+    border-radius: 8px;
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .materia-seleccionada.activo { display: flex; }
+  .materia-seleccionada span {
+    font-size: 0.9em;
+    color: var(--verde-uv-dark);
+    font-weight: 500;
+    flex: 1;
+    margin-right: 10px;
+  }
+  .btn-cambiar {
+    background: transparent;
+    border: 1px solid var(--verde-uv-dark);
+    color: var(--verde-uv-dark);
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.85em;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  /* Modal */
+  .modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 1000;
+    display: none;
+    align-items: flex-end; /* Bottom sheet en móvil */
+    justify-content: center;
+  }
+  .modal-overlay.activo { display: flex; }
+  .modal-content {
+    background: #fff;
+    width: 100%;
+    max-width: 600px;
+    max-height: 85vh;
+    border-radius: 20px 20px 0 0;
+    display: flex;
+    flex-direction: column;
+    animation: slideUp 0.3s ease-out;
+  }
+  @keyframes slideUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+  }
+  @media (min-width: 600px) {
+    .modal-overlay { align-items: center; padding: 20px; }
+    .modal-content { border-radius: 16px; max-height: 80vh; }
+  }
+  .modal-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid #e2e8f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .modal-header h3 { font-size: 1.1em; color: var(--azul-uv); }
+  .btn-cerrar {
+    background: none; border: none; font-size: 1.5em; color: #718096; cursor: pointer; padding: 4px 8px;
+  }
+  .modal-search {
+    padding: 12px 20px;
+    border-bottom: 1px solid #e2e8f0;
+    position: sticky;
+    top: 0;
+    background: #fff;
+    z-index: 10;
+  }
+  .modal-search input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #cbd5e0;
+    border-radius: 8px;
+    font-size: 16px; /* Previene zoom iOS */
+    outline: none;
+  }
+  .modal-search input:focus { border-color: var(--azul-uv); }
+  .modal-list {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    flex: 1;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+  .modal-item {
+    padding: 16px 20px;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 0.95em;
+    color: #2d3748;
+    cursor: pointer;
+    transition: background 0.15s;
+    line-height: 1.4;
+  }
+  .modal-item:active, .modal-item:hover { background: var(--azul-uv-light); }
+  .modal-item strong { color: var(--azul-uv); display: block; margin-bottom: 2px; }
+  .modal-item small { color: #718096; font-size: 0.85em; }
+  .modal-empty {
+    padding: 30px 20px;
     text-align: center;
     color: #718096;
-    padding: 40px 20px;
     font-style: italic;
   }
+
+  /* Resultados */
+  .result { padding: 24px 20px; min-height: 150px; }
+  .placeholder { text-align: center; color: #718096; padding: 30px 20px; font-style: italic; line-height: 1.5; }
   .card {
     background: #f8fafc;
     border-left: 5px solid var(--azul-uv);
-    padding: 18px;
-    border-radius: 6px;
-    margin-bottom: 15px;
+    padding: 16px;
+    border-radius: 8px;
+    margin-bottom: 12px;
   }
-  .card h3 {
-    color: var(--azul-uv);
-    margin-bottom: 10px;
-    font-size: 1.1em;
-  }
-  .card.destino {
-    border-left-color: var(--verde-uv);
-  }
-  .card.destino h3 {
-    color: var(--verde-uv-dark);
-  }
+  .card.destino { border-left-color: var(--verde-uv); }
+  .card h3 { color: var(--azul-uv); margin-bottom: 8px; font-size: 1.05em; }
+  .card.destino h3 { color: var(--verde-uv-dark); }
   .badge {
     display: inline-block;
-    padding: 4px 11px;
-    border-radius: 14px;
-    font-size: 0.82em;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.8em;
     font-weight: 600;
     margin-right: 6px;
     margin-top: 4px;
   }
   .badge-cred { background: var(--verde-uv-light); color: var(--verde-uv-dark); }
   .badge-area { background: var(--azul-uv-light); color: var(--azul-uv-dark); }
-  .no-equiv {
-    background: var(--error-bg);
-    border-left-color: var(--error);
-  }
-  .no-equiv h3 { color: var(--error); }
-  .transferencia {
-    background: var(--alerta-bg);
-    border-left-color: var(--alerta);
-  }
+  .transferencia { background: var(--alerta-bg); border-left-color: var(--alerta); }
   .transferencia h3 { color: var(--alerta); }
+  .no-equiv { background: var(--error-bg); border-left-color: var(--error); }
+  .no-equiv h3 { color: var(--error); }
+  .arrow { text-align: center; font-size: 1.5em; color: var(--verde-uv); margin: -4px 0; font-weight: bold; }
+  
   footer {
     text-align: center;
-    padding: 18px;
+    padding: 20px;
     background: var(--gris-claro);
-    font-size: 0.85em;
+    font-size: 0.8em;
     color: var(--gris-texto);
     border-top: 3px solid var(--verde-uv);
+    line-height: 1.5;
   }
   footer strong { color: var(--azul-uv); }
-  .arrow {
-    text-align: center;
-    font-size: 1.8em;
-    color: var(--verde-uv);
-    margin: -5px 0;
-    font-weight: bold;
-  }
 </style>
 </head>
 <body>
@@ -166,17 +276,22 @@
   <div class="controls">
     <label for="direccion">🔁 Dirección de la consulta:</label>
     <select id="direccion">
-      <option value="2004a2025">Soy del Plan 2004 → quiero ver la equivalencia en el Plan 2025</option>
-      <option value="2025a2004">Soy del Plan 2025 → quiero ver la equivalencia en el Plan 2004</option>
+      <option value="2004a2025">Soy del Plan 2004 → quiero ver mi equivalencia en el Plan 2025</option>
+      <option value="2025a2004">Soy del Plan 2025 → quiero ver mi origen en el Plan 2004</option>
     </select>
 
     <div class="direction-info" id="infoDireccion">
       Selecciona un Plan para conocer su equivalente.
     </div>
 
-    <label for="buscar">🔍 Busca o escribe el nombre la experiencia educativa:</label>
-    <input type="text" id="buscar" placeholder="Escribe el nombre de la experiencia educativa..." list="materias" autocomplete="off">
-    <datalist id="materias"></datalist>
+    <button class="btn-seleccionar" id="btnAbrirModal">
+      🔍 Seleccionar una experiencia educativa...
+    </button>
+
+    <div class="materia-seleccionada" id="materiaSeleccionada">
+      <span id="textoMateriaSeleccionada"></span>
+      <button class="btn-cambiar" id="btnCambiar">Cambiar</button>
+    </div>
   </div>
 
   <div class="result" id="resultado">
@@ -191,6 +306,22 @@
     <small>⚠️ La equivalencia definitiva se trámita en la Secretaría de la facultad.</small>
     <small>⚜ Diseñado por el docente Alfredo Reyes Gutiérrez para ayudar a sus tutorados.⚜</small>
   </footer>
+</div>
+
+<!-- Modal de Selección -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3 id="modalTitulo">Seleccionar materia</h3>
+      <button class="btn-cerrar" id="btnCerrarModal">&times;</button>
+    </div>
+    <div class="modal-search">
+      <input type="text" id="modalBuscador" placeholder="Escribe para filtrar..." autocomplete="off">
+    </div>
+    <ul class="modal-list" id="modalLista">
+      <!-- Se llena dinámicamente -->
+    </ul>
+  </div>
 </div>
 
 <script>
@@ -266,7 +397,6 @@ const equivalencias = [
   {m2004:"INGLES I", cr2004:6, area2004:"Básica", m2025:"LENGUA I", cr2025:4, area2025:"Básica"},
   {m2004:"INGLES II", cr2004:6, area2004:"Básica", m2025:"LENGUA II", cr2025:4, area2025:"Básica"},
   {m2004:"LECTURA Y REDACCION A TRAVES DEL ANALISIS DEL MUNDO CONTEMPORANEO", cr2004:6, area2004:"Básica", m2025:"LECTURA Y ESCRITURA DE TEXTOS ACADEMICOS", cr2025:4, area2025:"Básica"},
-  // Materias del Plan 2025 SIN equivalencia en Plan 2004
   {m2004:null, cr2004:0, area2004:null, m2025:"DISEÑO DEL PROTOCOLO DE INVESTIGACION", cr2025:4, area2025:"Disciplinaria", sinEquivalencia:true},
   {m2004:null, cr2004:0, area2004:null, m2025:"CONSULTORIA EN COMUNICACION", cr2025:4, area2025:"Terminal Comunicación Organizacional", sinEquivalencia:true},
   {m2004:null, cr2004:0, area2004:null, m2025:"PRACTICAS PROFESIONALES", cr2025:4, area2025:"Terminal", sinEquivalencia:true}
@@ -275,40 +405,119 @@ const equivalencias = [
 // Elementos del DOM
 const direccion = document.getElementById('direccion');
 const infoDireccion = document.getElementById('infoDireccion');
-const input = document.getElementById('buscar');
-const datalist = document.getElementById('materias');
+const btnAbrirModal = document.getElementById('btnAbrirModal');
+const modalOverlay = document.getElementById('modalOverlay');
+const modalTitulo = document.getElementById('modalTitulo');
+const btnCerrarModal = document.getElementById('btnCerrarModal');
+const modalBuscador = document.getElementById('modalBuscador');
+const modalLista = document.getElementById('modalLista');
 const resultado = document.getElementById('resultado');
+const materiaSeleccionadaDiv = document.getElementById('materiaSeleccionada');
+const textoMateriaSeleccionada = document.getElementById('textoMateriaSeleccionada');
+const btnCambiar = document.getElementById('btnCambiar');
 
-// Actualiza datalist y mensaje según la dirección
+let materiaActual = null;
+
+// Función para normalizar texto (ignorar acentos)
+function normalizeText(text) {
+  return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toUpperCase();
+}
+
+// Actualizar vista según dirección
 function actualizarVista() {
   const dir = direccion.value;
-  datalist.innerHTML = '';
-  input.value = '';
-  resultado.innerHTML = '<div class="placeholder">Selecciona o escribe una materia para ver su equivalencia.</div>';
+  materiaActual = null;
+  materiaSeleccionadaDiv.classList.remove('activo');
+  resultado.innerHTML = '<div class="placeholder">Selecciona la dirección de consulta y toca "Seleccionar una materia" para ver su equivalencia.</div>';
 
   if (dir === '2004a2025') {
-    infoDireccion.textContent = 'Escribe o selecciona una experiencia del Plan 2004 para conocer su equivalencia en el Plan 2025.';
-    equivalencias.forEach(e => {
-      if (e.m2004) {
-        const opt = document.createElement('option');
-        opt.value = e.m2004;
-        datalist.appendChild(opt);
-      }
-    });
+    infoDireccion.textContent = 'Toca el botón de abajo para buscar una materia del Plan 2004 y conocer su equivalente en el Plan 2025.';
+    modalTitulo.textContent = 'Materias del Plan 2004';
   } else {
-    infoDireccion.textContent = 'Escribe o selecciona una experiencia del Plan 2025 para conocer su equivalencia en el Plan 2004.';
-    equivalencias.forEach(e => {
-      const opt = document.createElement('option');
-      opt.value = e.m2025;
-      datalist.appendChild(opt);
-    });
+    infoDireccion.textContent = 'Toca el botón de abajo para buscar una materia del Plan 2025 y conocer su origen en el Plan 2004.';
+    modalTitulo.textContent = 'Materias del Plan 2025';
   }
 }
 
 direccion.addEventListener('change', actualizarVista);
-actualizarVista();
 
-// Función de renderizado de tarjeta (formato uniforme)
+// Abrir modal y cargar lista
+function abrirModal() {
+  modalOverlay.classList.add('activo');
+  modalBuscador.value = '';
+  modalBuscador.focus();
+  filtrarLista('');
+}
+
+function cerrarModal() {
+  modalOverlay.classList.remove('activo');
+}
+
+btnAbrirModal.addEventListener('click', abrirModal);
+btnCerrarModal.addEventListener('click', cerrarModal);
+btnCambiar.addEventListener('click', abrirModal);
+modalOverlay.addEventListener('click', (e) => {
+  if (e.target === modalOverlay) cerrarModal();
+});
+
+// Filtrar lista en el modal
+function filtrarLista(query) {
+  const dir = direccion.value;
+  const q = normalizeText(query);
+  modalLista.innerHTML = '';
+  
+  let opciones = [];
+  if (dir === '2004a2025') {
+    opciones = equivalencias.filter(e => e.m2004).map(e => ({
+      nombre: e.m2004,
+      area: e.area2004,
+      data: e
+    }));
+  } else {
+    opciones = equivalencias.map(e => ({
+      nombre: e.m2025,
+      area: e.area2025,
+      data: e
+    }));
+  }
+
+  const filtradas = q ? opciones.filter(o => normalizeText(o.nombre).includes(q)) : opciones;
+
+  if (filtradas.length === 0) {
+    modalLista.innerHTML = '<li class="modal-empty">No se encontraron materias con ese nombre.</li>';
+    return;
+  }
+
+  filtradas.forEach(op => {
+    const li = document.createElement('li');
+    li.className = 'modal-item';
+    li.innerHTML = `<strong>${op.nombre}</strong><small>${op.area || 'Sin área asignada'}</small>`;
+    li.addEventListener('click', () => {
+      seleccionarMateria(op.data);
+    });
+    modalLista.appendChild(li);
+  });
+}
+
+modalBuscador.addEventListener('input', (e) => {
+  filtrarLista(e.target.value);
+});
+
+// Seleccionar materia y mostrar resultado
+function seleccionarMateria(data) {
+  materiaActual = data;
+  const dir = direccion.value;
+  const nombreMostrar = dir === '2004a2025' ? data.m2004 : data.m2025;
+  
+  textoMateriaSeleccionada.textContent = nombreMostrar;
+  materiaSeleccionadaDiv.classList.add('activo');
+  cerrarModal();
+
+  const dirLabel = dir === '2004a2025' ? '2004a2025' : '2025a2004';
+  mostrarEquivalenciaUI(data, dirLabel);
+}
+
+// Renderizado de tarjetas (uniforme)
 function renderCard(titulo, nombre, cred, area, esDestino, emoji) {
   const clase = esDestino ? 'card destino' : 'card';
   return `
@@ -322,58 +531,16 @@ function renderCard(titulo, nombre, cred, area, esDestino, emoji) {
     </div>`;
 }
 
-// Función genérica que muestra la equivalencia en formato uniforme
-function mostrarEquivalencia(origen, destino, labelOrigen, labelDestino, emojiOrigen, emojiDestino, flecha) {
-  const cambioCred = origen.cr !== destino.cr;
-  const cambioArea = origen.area !== destino.area;
-
-  let html = renderCard(labelOrigen, origen.nombre, origen.cr, origen.area, false, emojiOrigen);
-  html += `<div class="arrow">${flecha}</div>`;
-  html += renderCard(labelDestino, destino.nombre, destino.cr, destino.area, true, emojiDestino);
-
-  if (cambioCred || cambioArea) {
-    html += `<div class="card transferencia">
-      <h3>⚠️ Observaciones</h3>
-      <p>
-        ${cambioCred ? `• Los créditos cambian de <strong>${origen.cr}</strong> (${labelOrigen.split(' ')[2]}) a <strong>${destino.cr}</strong> (${labelDestino.split(' ')[2]}).<br>` : ''}
-        ${cambioArea ? `• El área cambia de <strong>${origen.area}</strong> a <strong>${destino.area}</strong>.` : ''}
-      </p>
-      <p style="margin-top:8px;font-size:0.9em;">Consulta con Control Escolar para validar la aplicación.</p>
-    </div>`;
-  }
-  return html;
-}
-
-// Búsqueda
-input.addEventListener('input', () => {
-  const val = input.value.trim().toUpperCase();
-  if (!val) {
-    resultado.innerHTML = '<div class="placeholder">Selecciona o escribe una materia para ver su equivalencia.</div>';
-    return;
-  }
-
-  const dir = direccion.value;
-
+function mostrarEquivalenciaUI(match, dir) {
   if (dir === '2004a2025') {
-    const match = equivalencias.find(e => e.m2004 && e.m2004.toUpperCase() === val);
-    if (!match) {
-      resultado.innerHTML = `<div class="card no-equiv"><h3>❌ Sin equivalencia</h3><p>No se encontró "<strong>${input.value}</strong>" en el catálogo del Plan 2004.</p></div>`;
-      return;
-    }
     const origen = { nombre: match.m2004, cr: match.cr2004, area: match.area2004 };
     const destino = { nombre: match.m2025, cr: match.cr2025, area: match.area2025 };
-    resultado.innerHTML = mostrarEquivalencia(
+    resultado.innerHTML = mostrarEquivalenciaHTML(
       origen, destino,
-      'Plan 2004 (origen)',
-      'Equivalencia en Plan 2025',
+      'Plan 2004 (origen)', 'Equivalencia en Plan 2025',
       '📖', '✅', '⬇️'
     );
   } else {
-    const match = equivalencias.find(e => e.m2025 && e.m2025.toUpperCase() === val);
-    if (!match) {
-      resultado.innerHTML = `<div class="card no-equiv"><h3>❌ No encontrada</h3><p>No se encontró "<strong>${input.value}</strong>" en el catálogo del Plan 2025.</p></div>`;
-      return;
-    }
     if (match.sinEquivalencia) {
       resultado.innerHTML = `
         ${renderCard('Plan 2025 (origen)', match.m2025, match.cr2025, match.area2025, false, '📖')}
@@ -387,14 +554,37 @@ input.addEventListener('input', () => {
     }
     const origen = { nombre: match.m2025, cr: match.cr2025, area: match.area2025 };
     const destino = { nombre: match.m2004, cr: match.cr2004, area: match.area2004 };
-    resultado.innerHTML = mostrarEquivalencia(
+    resultado.innerHTML = mostrarEquivalenciaHTML(
       origen, destino,
-      'Plan 2025 (origen)',
-      'Equivalente en Plan 2004 a:',
+      'Plan 2025 (origen)', 'Origen en Plan 2004',
       '📖', '✅', '⬆️'
     );
   }
-});
+}
+
+function mostrarEquivalenciaHTML(origen, destino, labelOrigen, labelDestino, emojiOrigen, emojiDestino, flecha) {
+  const cambioCred = origen.cr !== destino.cr;
+  const cambioArea = origen.area !== destino.area;
+
+  let html = renderCard(labelOrigen, origen.nombre, origen.cr, origen.area, false, emojiOrigen);
+  html += `<div class="arrow">${flecha}</div>`;
+  html += renderCard(labelDestino, destino.nombre, destino.cr, destino.area, true, emojiDestino);
+
+  if (cambioCred || cambioArea) {
+    html += `<div class="card transferencia">
+      <h3>⚠️ Observaciones</h3>
+      <p>
+        ${cambioCred ? `• Los créditos cambian de <strong>${origen.cr}</strong> a <strong>${destino.cr}</strong>.<br>` : ''}
+        ${cazioArea ? `• El área cambia de <strong>${origen.area}</strong> a <strong>${destino.area}</strong>.` : ''}
+      </p>
+      <p style="margin-top:8px;font-size:0.9em;">Consulta con Control Escolar para validar la aplicación.</p>
+    </div>`;
+  }
+  return html;
+}
+
+// Inicializar
+actualizarVista();
 </script>
 </body>
 </html>
