@@ -537,7 +537,7 @@ function mostrarEquivalenciaUI(match, dir) {
     const destino = { nombre: match.m2025, cr: match.cr2025, area: match.area2025 };
     resultado.innerHTML = mostrarEquivalenciaHTML(
       origen, destino,
-      'Plan 2004 (origen)', 'Equivalencia en Plan 2025',
+      'Plan 2004 (origen)', 'Equivalente en Plan 2025 con:',
       '📖', '✅', '⬇️'
     );
   } else {
@@ -556,7 +556,7 @@ function mostrarEquivalenciaUI(match, dir) {
     const destino = { nombre: match.m2004, cr: match.cr2004, area: match.area2004 };
     resultado.innerHTML = mostrarEquivalenciaHTML(
       origen, destino,
-      'Plan 2025 (origen)', 'Origen en Plan 2004',
+      'Plan 2025 (origen)', 'Equivalente en Plan 2004 con',
       '📖', '✅', '⬆️'
     );
   }
