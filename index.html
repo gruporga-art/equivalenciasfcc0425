@@ -428,13 +428,13 @@ function actualizarVista() {
   const dir = direccion.value;
   materiaActual = null;
   materiaSeleccionadaDiv.classList.remove('activo');
-  resultado.innerHTML = '<div class="placeholder">Selecciona la dirección de consulta y toca "Seleccionar una materia" para ver su equivalencia.</div>';
+  resultado.innerHTML = '<div class="placeholder">Selecciona tu plan y toca "Seleccionar una experiencia educativa" para ver su equivalencia.</div>';
 
   if (dir === '2004a2025') {
-    infoDireccion.textContent = 'Toca el botón de abajo para buscar una materia del Plan 2004 y conocer su equivalente en el Plan 2025.';
+    infoDireccion.textContent = 'Toca el botón de abajo para buscar una experiencia del Plan 2004 y conocer su equivalencia en el Plan 2025.';
     modalTitulo.textContent = 'Materias del Plan 2004';
   } else {
-    infoDireccion.textContent = 'Toca el botón de abajo para buscar una materia del Plan 2025 y conocer su origen en el Plan 2004.';
+    infoDireccion.textContent = 'Toca el botón de abajo para buscar una experiencia del Plan 2025 y conocer su equivalencia en el Plan 2004.';
     modalTitulo.textContent = 'Materias del Plan 2025';
   }
 }
@@ -484,7 +484,7 @@ function filtrarLista(query) {
   const filtradas = q ? opciones.filter(o => normalizeText(o.nombre).includes(q)) : opciones;
 
   if (filtradas.length === 0) {
-    modalLista.innerHTML = '<li class="modal-empty">No se encontraron materias con ese nombre.</li>';
+    modalLista.innerHTML = '<li class="modal-empty">No se encontraron experiencias educativas con ese nombre.</li>';
     return;
   }
 
