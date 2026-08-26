@@ -297,6 +297,126 @@
     Universidad Veracruzana · 2026<br>
     <p><small>⚠️ La equivalencia definitiva se trámita en la Secretaría de la facultad.</small><br>
     <small>⚜ Herramienta de apoyo diseñada por el docente <a href="mailto:alfreyes@tuv.mx">Dr. Alfredo Reyes Gutiérrez</a> para sus Tutorados.⚜</small></p>
+    <!-- ========================================================== -->
+<!--  Componente de Calificación con Estrellas y Contador de Visitas -->
+<!--  Diseñado para la Universidad Veracruzana                    -->
+<!-- ========================================================== -->
+
+<div style="max-width:800px; margin:20px auto; background:#fff; border-radius:12px; padding:20px 24px; box-shadow:0 2px 8px rgba(0,0,0,0.08); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+
+  <div style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px;">
+    <!-- Calificación con estrellas -->
+    <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
+      <div style="display:flex; gap:4px;" id="starContainer">
+        <!-- Las estrellas se generan con JS -->
+      </div>
+      <span id="ratingText" style="font-size:0.95em; color:#18529D; font-weight:600;">5.0 / 5</span>
+      <span id="votesText" style="font-size:0.85em; color:#4a5568;">(1 voto)</span>
+    </div>
+
+    <!-- Contador de visitas -->
+    <div style="display:flex; align-items:center; gap:6px; font-size:0.95em; color:#4a5568;">
+      <span style="font-size:1.2em;">👁️</span>
+      <span><span id="visitorCount">0</span> visitas</span>
+    </div>
+  </div>
+
+  <p style="margin-top:10px; font-size:0.8em; color:#718096; border-top:1px solid #e2e8f0; padding-top:10px; display:flex; justify-content:space-between;">
+    <span>Estudiantes han utilizado esta herramienta</span>
+    <span id="lastVisit" style="font-size:0.75em;"></span>
+  </p>
+</div>
+
+<script>
+  (function() {
+    // --- Configuración de claves de localStorage ---
+    const STORAGE_KEY_RATING = 'uv_lcc_rating';
+    const STORAGE_KEY_VOTES = 'uv_lcc_votes';
+    const STORAGE_KEY_VISITS = 'uv_lcc_visits';
+
+    // --- Obtener o inicializar datos ---
+    let rating = parseFloat(localStorage.getItem(STORAGE_KEY_RATING)) || 0;
+    let votes = parseInt(localStorage.getItem(STORAGE_KEY_VOTES)) || 0;
+    let visits = parseInt(localStorage.getItem(STORAGE_KEY_VISITS)) || 0;
+
+    // Incrementar visitas (una vez por carga de página)
+    visits += 1;
+    localStorage.setItem(STORAGE_KEY_VISITS, visits);
+
+    // --- Actualizar UI del contador ---
+    document.getElementById('visitorCount').textContent = visits;
+
+    // Mostrar fecha/hora de la última visita (opcional)
+    const now = new Date();
+    const lastVisitStr = now.toLocaleString('es-MX', { hour12: false });
+    document.getElementById('lastVisit').textContent = 'Última visita: ' + lastVisitStr;
+
+    // --- Renderizar estrellas ---
+    const starContainer = document.getElementById('starContainer');
+    const ratingText = document.getElementById('ratingText');
+    const votesText = document.getElementById('votesText');
+
+    // Función para actualizar la visualización de estrellas
+    function renderStars(activeStars) {
+      starContainer.innerHTML = '';
+      for (let i = 1; i <= 5; i++) {
+        const star = document.createElement('span');
+        star.style.fontSize = '1.6rem';
+        star.style.cursor = 'pointer';
+        star.style.transition = 'transform 0.1s';
+        star.style.display = 'inline-block';
+        star.style.lineHeight = '1';
+        star.style.color = (i <= activeStars) ? '#fbbf24' : '#d1d5db'; // amarillo / gris
+        star.textContent = '★';
+        star.dataset.value = i;
+        star.addEventListener('click', function(e) {
+          e.stopPropagation();
+          const selected = parseInt(this.dataset.value);
+          // Guardar nuevo voto
+          const newRating = (rating * votes + selected) / (votes + 1);
+          votes += 1;
+          rating = newRating;
+          localStorage.setItem(STORAGE_KEY_RATING, rating);
+          localStorage.setItem(STORAGE_KEY_VOTES, votes);
+          // Actualizar UI
+          renderStars(Math.round(rating));
+          ratingText.textContent = rating.toFixed(1) + ' / 5';
+          votesText.textContent = `(${votes} ${votes === 1 ? 'voto' : 'votos'})`;
+        });
+        // Efecto hover (opcional)
+        star.addEventListener('mouseenter', function() {
+          this.style.transform = 'scale(1.2)';
+        });
+        star.addEventListener('mouseleave', function() {
+          this.style.transform = 'scale(1)';
+        });
+        starContainer.appendChild(star);
+      }
+    }
+
+    // Mostrar calificación inicial (redondeo para estrellas llenas)
+    const initialActive = Math.round(rating);
+    renderStars(initialActive);
+    ratingText.textContent = rating.toFixed(1) + ' / 5';
+    votesText.textContent = `(${votes} ${votes === 1 ? 'voto' : 'votos'})`;
+
+    // Si no hay votos, mostrar mensaje especial
+    if (votes === 0) {
+      ratingText.textContent = '5.0 / 5'; // valor por defecto
+      votesText.textContent = '(0 votos)';
+      // Las estrellas se muestran en gris (0 activas)
+      renderStars(0);
+    }
+
+    // Opcional: permitir resetear (solo para pruebas) - lo dejamos comentado
+    // document.addEventListener('dblclick', function() {
+    //   localStorage.removeItem(STORAGE_KEY_RATING);
+    //   localStorage.removeItem(STORAGE_KEY_VOTES);
+    //   location.reload();
+    // });
+
+  })();
+</script>
   </footer>
 </div>
 
