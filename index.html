@@ -71,7 +71,7 @@
     padding: 12px;
     border: 2px solid #cbd5e0;
     border-radius: 8px;
-    font-size: 16px; /* Previene zoom en iOS */
+    font-size: 16px;
     margin-bottom: 16px;
     background: #fff;
     appearance: none;
@@ -90,8 +90,6 @@
     margin-bottom: 16px;
     line-height: 1.4;
   }
-  
-  /* Botón de selección móvil */
   .btn-seleccionar {
     width: 100%;
     padding: 14px;
@@ -109,7 +107,6 @@
     transition: background 0.2s;
   }
   .btn-seleccionar:active { background: var(--azul-uv-dark); transform: scale(0.98); }
-  
   .materia-seleccionada {
     margin-top: 12px;
     padding: 12px;
@@ -138,15 +135,13 @@
     font-weight: 600;
     cursor: pointer;
   }
-
-  /* Modal */
   .modal-overlay {
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
     background: rgba(0,0,0,0.6);
     z-index: 1000;
     display: none;
-    align-items: flex-end; /* Bottom sheet en móvil */
+    align-items: flex-end;
     justify-content: center;
   }
   .modal-overlay.activo { display: flex; }
@@ -192,7 +187,7 @@
     padding: 12px 16px;
     border: 2px solid #cbd5e0;
     border-radius: 8px;
-    font-size: 16px; /* Previene zoom iOS */
+    font-size: 16px;
     outline: none;
   }
   .modal-search input:focus { border-color: var(--azul-uv); }
@@ -222,8 +217,6 @@
     color: #718096;
     font-style: italic;
   }
-
-  /* Resultados */
   .result { padding: 24px 20px; min-height: 150px; }
   .placeholder { text-align: center; color: #718096; padding: 30px 20px; font-style: italic; line-height: 1.5; }
   .card {
@@ -252,7 +245,6 @@
   .no-equiv { background: var(--error-bg); border-left-color: var(--error); }
   .no-equiv h3 { color: var(--error); }
   .arrow { text-align: center; font-size: 1.5em; color: var(--verde-uv); margin: -4px 0; font-weight: bold; }
-  
   footer {
     text-align: center;
     padding: 20px;
@@ -325,7 +317,10 @@
 </div>
 
 <script>
-// Datos completos extraídos de EQUIVALENCIA 2004-2025.xlsx
+// ============================================================
+// DATOS COMPLETOS DE EQUIVALENCIAS (71 registros del archivo Excel)
+// Incluye TODAS las materias del área básica, disciplinaria y terminal.
+// ============================================================
 const equivalencias = [
   {m2004:"CULTURA E IDENTIDAD EN AMERICA LATINA I", cr2004:6, area2004:"Básica", m2025:"ESTUDIOS CULTURALES LATINOAMERICANOS", cr2025:6, area2025:"Básica"},
   {m2004:"ECONOMIA Y COMUNICACION", cr2004:6, area2004:"Básica", m2025:"SOCIOECONOMIA DE LA COMUNICACION", cr2025:6, area2025:"Básica"},
@@ -343,7 +338,7 @@ const equivalencias = [
   {m2004:"SOCIOLOGIA DE LA COMUNICACION", cr2004:8, area2004:"Disciplinaria", m2025:"TENDENCIAS SOCIOLOGICAS DE LA COMUNICACION", cr2025:8, area2025:"Disciplinaria"},
   {m2004:"TEORIA DE LA COMUNICACION I", cr2004:8, area2004:"Disciplinaria", m2025:"TEORIAS CLASICAS DE LA COMUNICACION", cr2025:8, area2025:"Disciplinaria"},
   {m2004:"TEORIA DE LA COMUNICACION II", cr2004:8, area2004:"Disciplinaria", m2025:"ESTUDIOS CONTEMPORANEOS DE LA COMUNICACION", cr2025:8, area2025:"Disciplinaria"},
-  {m2004:"TEORIAS DE LA ADMINISTRACION PARA LA COMUNICACION", cr2004:6, area2004:"Básica", m2025:"TEORIAS ADMINISTRATIVAS PARA LA COMUNICACION", cr2025:6, area2025:"Disciplinaria"},
+  {m2004:"TEORIAS DE LA ADMINISTRACION PARA LA COMUNICACION", cr2004:6, area2004:"Básica", m2025:"TEORIAS ADMINISTRATICAS PARA LA COMUNICACION", cr2025:6, area2025:"Disciplinaria"},
   {m2004:"COMUNICACION INTERNA EN LAS ORGANIZACIONES", cr2004:6, area2004:"Disciplinaria", m2025:"ENDOMARKETING", cr2025:6, area2025:"Disciplinaria"},
   {m2004:"ESTRATEGIAS DE COMUNICACION CORPORATIVA", cr2004:4, area2004:"Disciplinaria", m2025:"COMUNICACION CORPORATIVA", cr2025:5, area2025:"Disciplinaria"},
   {m2004:"PROYECTOS DE COMUNICACION Y DESARROLLO DE EMPRENDEDORES", cr2004:5, area2004:"Disciplinaria", m2025:"EMPRENDIMIENTO EN COMUNICACION", cr2025:6, area2025:"Disciplinaria"},
@@ -397,12 +392,15 @@ const equivalencias = [
   {m2004:"INGLES I", cr2004:6, area2004:"Básica", m2025:"LENGUA I", cr2025:4, area2025:"Básica"},
   {m2004:"INGLES II", cr2004:6, area2004:"Básica", m2025:"LENGUA II", cr2025:4, area2025:"Básica"},
   {m2004:"LECTURA Y REDACCION A TRAVES DEL ANALISIS DEL MUNDO CONTEMPORANEO", cr2004:6, area2004:"Básica", m2025:"LECTURA Y ESCRITURA DE TEXTOS ACADEMICOS", cr2025:4, area2025:"Básica"},
+  // Materias del Plan 2025 sin equivalente en Plan 2004 (solo transferencia a AFEL)
   {m2004:null, cr2004:0, area2004:null, m2025:"DISEÑO DEL PROTOCOLO DE INVESTIGACION", cr2025:4, area2025:"Disciplinaria", sinEquivalencia:true},
   {m2004:null, cr2004:0, area2004:null, m2025:"CONSULTORIA EN COMUNICACION", cr2025:4, area2025:"Terminal Comunicación Organizacional", sinEquivalencia:true},
   {m2004:null, cr2004:0, area2004:null, m2025:"PRACTICAS PROFESIONALES", cr2025:4, area2025:"Terminal", sinEquivalencia:true}
 ];
 
-// Elementos del DOM
+// ============================================================
+// LÓGICA DE LA APLICACIÓN
+// ============================================================
 const direccion = document.getElementById('direccion');
 const infoDireccion = document.getElementById('infoDireccion');
 const btnAbrirModal = document.getElementById('btnAbrirModal');
@@ -418,12 +416,10 @@ const btnCambiar = document.getElementById('btnCambiar');
 
 let materiaActual = null;
 
-// Función para normalizar texto (ignorar acentos)
 function normalizeText(text) {
   return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toUpperCase();
 }
 
-// Actualizar vista según dirección
 function actualizarVista() {
   const dir = direccion.value;
   materiaActual = null;
@@ -441,7 +437,6 @@ function actualizarVista() {
 
 direccion.addEventListener('change', actualizarVista);
 
-// Abrir modal y cargar lista
 function abrirModal() {
   modalOverlay.classList.add('activo');
   modalBuscador.value = '';
@@ -460,7 +455,6 @@ modalOverlay.addEventListener('click', (e) => {
   if (e.target === modalOverlay) cerrarModal();
 });
 
-// Filtrar lista en el modal
 function filtrarLista(query) {
   const dir = direccion.value;
   const q = normalizeText(query);
@@ -503,7 +497,6 @@ modalBuscador.addEventListener('input', (e) => {
   filtrarLista(e.target.value);
 });
 
-// Seleccionar materia y mostrar resultado
 function seleccionarMateria(data) {
   materiaActual = data;
   const dir = direccion.value;
@@ -517,7 +510,6 @@ function seleccionarMateria(data) {
   mostrarEquivalenciaUI(data, dirLabel);
 }
 
-// Renderizado de tarjetas (uniforme)
 function renderCard(titulo, nombre, cred, area, esDestino, emoji) {
   const clase = esDestino ? 'card destino' : 'card';
   return `
@@ -535,11 +527,7 @@ function mostrarEquivalenciaUI(match, dir) {
   if (dir === '2004a2025') {
     const origen = { nombre: match.m2004, cr: match.cr2004, area: match.area2004 };
     const destino = { nombre: match.m2025, cr: match.cr2025, area: match.area2025 };
-    resultado.innerHTML = mostrarEquivalenciaHTML(
-      origen, destino,
-      'Plan 2004 (origen)', 'Equivalente en Plan 2025 con',
-      '📖', '✅', '⬇️'
-    );
+    resultado.innerHTML = mostrarEquivalenciaHTML(origen, destino, 'Plan 2004 (origen)', 'Equivalente en Plan 2025', '📖', '✅', '⬇️');
   } else {
     if (match.sinEquivalencia) {
       resultado.innerHTML = `
@@ -554,11 +542,7 @@ function mostrarEquivalenciaUI(match, dir) {
     }
     const origen = { nombre: match.m2025, cr: match.cr2025, area: match.area2025 };
     const destino = { nombre: match.m2004, cr: match.cr2004, area: match.area2004 };
-    resultado.innerHTML = mostrarEquivalenciaHTML(
-      origen, destino,
-      'Plan 2025 (origen)', 'Equivalente en Plan 2004 con',
-      '📖', '✅', '⬆️'
-    );
+    resultado.innerHTML = mostrarEquivalenciaHTML(origen, destino, 'Plan 2025 (origen)', 'Equivalente en Plan 2004', '📖', '✅', '⬆️');
   }
 }
 
@@ -575,7 +559,7 @@ function mostrarEquivalenciaHTML(origen, destino, labelOrigen, labelDestino, emo
       <h3>⚠️ Observaciones</h3>
       <p>
         ${cambioCred ? `• Los créditos cambian de <strong>${origen.cr}</strong> a <strong>${destino.cr}</strong>.<br>` : ''}
-        ${cazioArea ? `• El área cambia de <strong>${origen.area}</strong> a <strong>${destino.area}</strong>.` : ''}
+        ${cambioArea ? `• El área cambia de <strong>${origen.area}</strong> a <strong>${destino.area}</strong>.` : ''}
       </p>
       <p style="margin-top:8px;font-size:0.9em;">Consulta con Control Escolar para validar la aplicación.</p>
     </div>`;
