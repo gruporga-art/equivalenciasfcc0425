@@ -42,8 +42,7 @@ body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opa
 ::-webkit-scrollbar-thumb:hover{background:linear-gradient(180deg,var(--mint),var(--uv))}
 ::-webkit-scrollbar-corner{background:#d3ddec}
 
-/* ══ TOP ══ */
-.top{position:fixed;top:0;left:0;right:0;height:var(--top);z-index:700;display:flex;align-items:center;gap:12px;padding:0 16px;
+.top{position:fixed;top:0;left:0;right:0;height:var(--top);z-index:700;display:flex;align-items:center;gap:10px;padding:0 16px;
   background:linear-gradient(100deg,var(--nv9),var(--nv6) 62%,#25538e);border-bottom:3px solid var(--uv);box-shadow:0 6px 24px rgba(7,22,48,.3)}
 .top::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(24rem 8rem at 88% 0%,rgba(32,201,151,.32),transparent 70%)}
 .brand{display:flex;align-items:center;gap:10px;position:relative;z-index:2;min-width:0}
@@ -55,6 +54,10 @@ body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opa
 .tnav a{color:#dbe7f7;text-decoration:none;font-size:.8rem;font-weight:700;padding:8px 12px;border-radius:9px;transition:.18s;white-space:nowrap;border:1.5px solid transparent}
 .tnav a:hover{background:rgba(255,255,255,.13);color:#fff}
 .tnav a.on{background:rgba(255,255,255,.17);border-color:rgba(255,255,255,.36);color:#fff}
+.icobtn{position:relative;z-index:2;width:36px;height:34px;flex:none;border-radius:10px;cursor:pointer;font-size:.95rem;
+  border:1.5px solid rgba(255,255,255,.36);background:rgba(255,255,255,.13);color:#fff;transition:.18s;display:grid;place-items:center}
+.icobtn:hover{background:rgba(255,255,255,.28);transform:translateY(-2px)}
+.icobtn.loaded{background:linear-gradient(130deg,var(--uv),var(--mint));border-color:transparent;color:#04240f}
 .tbtn{position:relative;z-index:2;border:none;cursor:pointer;font-family:inherit;font-weight:800;font-size:.8rem;color:#04240f;
   background:linear-gradient(130deg,var(--mint),var(--uv));padding:9px 15px;border-radius:10px;box-shadow:0 5px 16px rgba(32,201,151,.42);transition:.18s;white-space:nowrap}
 .tbtn:hover{transform:translateY(-2px)}
@@ -63,7 +66,6 @@ body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opa
 
 .wrap{max-width:1260px;margin:0 auto;padding:calc(var(--top) + 22px) 16px 54px}
 
-/* ══ HERO ══ */
 .hero{position:relative;overflow:hidden;border-radius:var(--rl);padding:26px;margin-bottom:16px;color:#fff;
   background:linear-gradient(134deg,var(--nv9) 0%,var(--nv7) 40%,#20477d 72%,#1d6b4a 100%);box-shadow:var(--s2)}
 .hero::after{content:"";position:absolute;inset:0;pointer-events:none;
@@ -76,21 +78,7 @@ body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opa
 .hero h1{font-size:clamp(1.34rem,3.4vw,2.08rem);letter-spacing:-.022em;line-height:1.16;margin-bottom:8px;text-shadow:0 3px 16px rgba(0,0,0,.32)}
 .hero h1 em{font-style:normal;background:linear-gradient(100deg,#7ff0c0,#a8c8ff);-webkit-background-clip:text;background-clip:text;color:transparent}
 .hero p{font-size:.92rem;line-height:1.62;color:#dae7f8;max-width:76ch}
-.hstats{display:grid;grid-template-columns:repeat(auto-fit,minmax(124px,1fr));gap:10px;margin-top:18px}
-.hs{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);border-radius:12px;padding:11px 12px;backdrop-filter:blur(6px)}
-.hs b{display:block;font-size:1.5rem;font-weight:900;line-height:1;font-variant-numeric:tabular-nums}
-.hs span{display:block;font-size:.66rem;color:#c6d8ee;margin-top:5px;font-weight:800;letter-spacing:.04em}
-.hs.g b{color:#8ef0b8}.hs.b b{color:#a9cdff}.hs.a b{color:#ffd694}.hs.p b{color:#d3b6ff}
-.srcbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.18)}
-.srcbadge{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);
-  padding:6px 13px;border-radius:20px;font-size:.73rem;font-weight:800;color:#eaf3ff}
-.srcbadge.live{background:linear-gradient(120deg,rgba(40,167,69,.42),rgba(32,201,151,.34));border-color:rgba(142,240,184,.6)}
-.srcbtn{border:1.5px solid rgba(255,255,255,.42);background:rgba(255,255,255,.12);color:#fff;border-radius:10px;padding:7px 14px;
-  font-family:inherit;font-size:.75rem;font-weight:800;cursor:pointer;transition:.18s}
-.srcbtn:hover{background:rgba(255,255,255,.28)}
-.srchint{font-size:.71rem;color:#a9c1de}
 
-/* ══ MODES ══ */
 .modes{display:flex;gap:6px;background:#e7eef8;padding:5px;border-radius:14px;border:1px solid var(--line2);margin-bottom:16px;box-shadow:var(--s1)}
 .modes button{flex:1;border:none;background:transparent;cursor:pointer;font-family:inherit;font-weight:800;font-size:.88rem;color:var(--ink2);
   padding:13px 12px;border-radius:10px;transition:.2s;display:flex;align-items:center;justify-content:center;gap:8px;line-height:1.25}
@@ -101,8 +89,7 @@ body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opa
 .panel.on{display:block;animation:rise .42s cubic-bezier(.2,.75,.3,1)}
 @keyframes rise{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:none}}
 
-/* ══ FINDER ══ */
-.finder{display:grid;grid-template-columns:1fr 76px 1fr;align-items:start;margin-bottom:14px}
+.finder{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
 .side{background:#fff;border:1.5px solid var(--line);border-radius:var(--r);padding:18px;box-shadow:var(--s1);position:relative;display:flex;flex-direction:column;gap:13px}
 .side::before{content:"";position:absolute;left:0;right:0;top:0;height:5px;border-radius:var(--r) var(--r) 0 0}
 .side.p04::before{background:linear-gradient(90deg,var(--nv6),var(--nv5))}
@@ -114,9 +101,7 @@ body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opa
 .side h2{font-size:1.06rem;font-weight:900;color:var(--nv7);line-height:1.15}
 .side .ss{font-size:.68rem;color:var(--ink3);font-weight:800;letter-spacing:.05em;text-transform:uppercase}
 .side .cl{font-size:.66rem;font-weight:900;letter-spacing:.07em;text-transform:uppercase;color:var(--ink3)}
-.side .hint{font-size:.73rem;color:var(--ink3);line-height:1.55}
 
-/* combobox */
 .cb{position:relative}
 .cb-field{display:flex;align-items:center;gap:8px;border:2px solid var(--line2);border-radius:12px;background:var(--surf2);padding:0 10px;transition:.18s}
 .cb-field:focus-within{border-color:var(--nv5);background:#fff;box-shadow:0 0 0 4px rgba(47,93,163,.14)}
@@ -139,24 +124,15 @@ body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opa
 .cb-grp{padding:7px 10px 5px;font-size:.6rem;font-weight:900;letter-spacing:.07em;text-transform:uppercase;color:#fff;border-radius:8px;margin:4px 2px 3px;position:sticky;top:0;z-index:2}
 .cb-grp.f-BAS{background:linear-gradient(100deg,var(--uvd),var(--uv))}
 .cb-grp.f-DIS{background:linear-gradient(100deg,var(--blued),var(--blue))}
-.cb-grp.f-TER{background:linear-gradient(100deg,var(--viold),var(--viol))}
 .cb-grp.f-LIB{background:linear-gradient(100deg,var(--amberd),var(--amber))}
-.cb-opt{padding:9px 11px;border-radius:9px;font-size:.8rem;font-weight:700;color:var(--nv7);cursor:pointer;line-height:1.35;transition:.12s;display:flex;align-items:center;gap:8px}
+.cb-grp.f-TER{background:linear-gradient(100deg,var(--viold),var(--viol))}
+.cb-opt{padding:9px 11px;border-radius:9px;font-size:.8rem;font-weight:700;color:var(--nv7);cursor:pointer;line-height:1.35;transition:.12s}
 .cb-opt:hover,.cb-opt.act{background:#eef5fd;color:var(--nv8)}
 .cb-opt.act{box-shadow:inset 3px 0 0 var(--nv5)}
 .side.p25 .cb-opt.act{box-shadow:inset 3px 0 0 var(--uv)}
 .cb-opt.sel{background:var(--bluel);font-weight:900}
 .cb-opt mark{background:#ffe9a8;color:inherit;border-radius:3px;padding:0 1px}
 .cb-none{padding:18px 12px;text-align:center;font-size:.8rem;color:var(--ink3);font-weight:700}
-
-.mid{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:34px 6px 0}
-.midbadge{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;font-size:1.4rem;color:#fff;
-  background:linear-gradient(135deg,var(--nv6),var(--viol));box-shadow:0 8px 22px rgba(26,58,107,.34);border:3px solid #fff;transition:.3s}
-.midbadge.ok{background:linear-gradient(135deg,var(--uvd),var(--mint));color:#04240f}
-.midbadge.warn{background:linear-gradient(135deg,var(--amberd),var(--amber))}
-.midbadge.no{background:linear-gradient(135deg,var(--redd),var(--red))}
-.midbadge.new{background:linear-gradient(135deg,var(--cyand),var(--cyan))}
-.midtxt{font-size:.6rem;font-weight:900;text-align:center;color:var(--ink3);letter-spacing:.04em;line-height:1.3}
 
 .frow{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:16px}
 .mini{border:2px solid var(--nv6);background:#fff;color:var(--nv6);border-radius:10px;padding:9px 15px;font-family:inherit;font-size:.78rem;font-weight:800;cursor:pointer;transition:.18s;white-space:nowrap}
@@ -169,54 +145,49 @@ body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opa
 .blank .big{font-size:2.8rem;margin-bottom:10px;opacity:.55}
 .blank h3{font-size:1.02rem;color:var(--ink2);margin-bottom:6px;font-weight:800}
 .blank p{font-size:.85rem;line-height:1.6;max-width:54ch;margin:0 auto}
-.result{display:none}.result.on{display:block;animation:rise .36s cubic-bezier(.2,.75,.3,1)}
-.rgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.ficha{background:#fff;border:1.5px solid var(--line);border-radius:var(--r);overflow:hidden;box-shadow:var(--s1);display:flex;flex-direction:column}
-.fh{padding:15px 17px;color:#fff;position:relative;overflow:hidden}
-.fh::after{content:"";position:absolute;inset:0;background:radial-gradient(16rem 7rem at 92% -30%,rgba(255,255,255,.3),transparent 70%)}
-.fh>*{position:relative;z-index:2}
-.fh.f-BAS{background:linear-gradient(130deg,var(--uvd),var(--uv))}
-.fh.f-DIS{background:linear-gradient(130deg,var(--blued),var(--blue))}
-.fh.f-TER{background:linear-gradient(130deg,var(--viold),var(--viol))}
-.fh.f-LIB{background:linear-gradient(130deg,var(--amberd),var(--amber))}
-.fh.f-NONE{background:linear-gradient(130deg,var(--redd),var(--red))}
-.fh .k{font-size:.62rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase;opacity:.92;margin-bottom:6px}
-.fh h3{font-size:1rem;font-weight:900;line-height:1.28}
-.fh .m{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
-.fh .m span{background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.36);padding:3px 10px;border-radius:20px;font-size:.67rem;font-weight:800}
-.fb{padding:15px 17px;display:flex;flex-direction:column;gap:12px;flex:1}
-.row{display:flex;flex-direction:column;gap:5px}
-.row .rk{font-size:.62rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3)}
-.row .rv{font-size:.83rem;font-weight:800;color:var(--nv7);line-height:1.45}
-.areatag{display:inline-flex;align-items:center;gap:7px;padding:7px 12px;border-radius:9px;font-size:.73rem;font-weight:900;line-height:1.35}
-.areatag.f-BAS{background:#e6f7ec;color:var(--uvd);border:1.5px solid #b9e6c8}
-.areatag.f-DIS{background:var(--bluel);color:var(--blued);border:1.5px solid #bcd9f5}
-.areatag.f-TER{background:var(--violl);color:var(--viold);border:1.5px solid #d9c6ff}
-.areatag.f-LIB{background:var(--amberl);color:var(--amberd);border:1.5px solid #ffdda1}
-.areatag.t-NT{background:var(--cyanl);color:var(--cyand);border-color:#a9dfe8}
-.areatag.t-CO{background:var(--magl);color:var(--magd);border-color:#f3bcd0}
-.areatag.t-PE{background:var(--orngl);color:var(--orngd);border-color:#ffd0b0}
-.antbox{background:var(--amberl);border:1.5px solid #ffdda1;border-left:4px solid var(--amber);border-radius:10px;padding:11px 13px}
-.antbox .ak{font-size:.64rem;font-weight:900;letter-spacing:.06em;text-transform:uppercase;color:var(--amberd);margin-bottom:6px}
-.antbox .an{font-size:.79rem;font-weight:800;color:var(--nv7);line-height:1.45}
-.antbox.none{background:#e6f7ec;border-color:#b9e6c8;border-left-color:var(--uv)}
-.antbox.none .ak,.antbox.none .an{color:var(--uvd)}
-.chain{display:flex;flex-direction:column;gap:2px;margin-top:9px}
-.cstep{display:flex;align-items:center;gap:8px;font-size:.73rem}
-.cstep .cd{width:19px;height:19px;border-radius:50%;flex:none;display:grid;place-items:center;font-size:.56rem;font-weight:900;color:#fff;background:linear-gradient(135deg,var(--nv5),var(--nv6))}
-.cstep.last .cd{background:linear-gradient(135deg,var(--uv),var(--mint));color:#04240f}
-.cstep .cn{font-weight:800;color:var(--nv7);line-height:1.3}
-.carrow{padding-left:8px;color:var(--amber);font-size:.7rem;line-height:1}
-.jump{cursor:pointer;color:var(--blued)!important;transition:.15s}
-.jump:hover{color:var(--viol)!important;text-decoration:underline}
-.verdict{margin-top:14px;border-radius:var(--r);padding:15px 17px;font-size:.86rem;line-height:1.62;border:1.5px solid}
-.verdict.ok{background:linear-gradient(140deg,#f0fbf4,#e6f7ec);border-color:#b9e6c8;color:#14612c}
-.verdict.warn{background:linear-gradient(140deg,#fffaf0,#fff5e4);border-color:#ffdda1;color:#7a5806}
-.verdict.new{background:linear-gradient(140deg,#f0fbfd,#e2f6f9);border-color:#a9dfe8;color:#0b5866}
-.verdict.no{background:linear-gradient(140deg,#fef5f5,#fdeaea);border-color:#f5c2c2;color:#8b1f2b}
-.verdict .vt{display:flex;align-items:center;gap:9px;font-weight:900;font-size:.95rem;margin-bottom:7px}
 
-/* ══ DECK ══ */
+/* ══ TARJETA DE EQUIVALENCIA ══ */
+.result{display:none}.result.on{display:block;animation:rise .36s cubic-bezier(.2,.75,.3,1)}
+.eqcard{display:grid;grid-template-columns:1fr 96px 1fr;background:#fff;border:1.5px solid var(--line);border-radius:var(--rl);overflow:hidden;box-shadow:var(--s2)}
+.eqside{display:flex;flex-direction:column}
+.eqh{padding:14px 18px;color:#fff;position:relative;overflow:hidden}
+.eqh::after{content:"";position:absolute;inset:0;background:radial-gradient(16rem 7rem at 92% -30%,rgba(255,255,255,.3),transparent 70%)}
+.eqh>*{position:relative;z-index:2}
+.eqh.p04{background:linear-gradient(130deg,var(--nv7),var(--nv5))}
+.eqh.p25{background:linear-gradient(130deg,var(--uvd),var(--uv))}
+.eqh.miss{background:linear-gradient(130deg,var(--redd),var(--red))}
+.eqh.nw{background:linear-gradient(130deg,var(--cyand),var(--cyan))}
+.eqh .k{font-size:.63rem;font-weight:900;letter-spacing:.13em;text-transform:uppercase;opacity:.92;margin-bottom:6px;display:flex;align-items:center;gap:7px}
+.eqh h3{font-size:1.06rem;font-weight:900;line-height:1.26;letter-spacing:.005em}
+.eqb{padding:16px 18px;display:flex;flex-direction:column;gap:14px;flex:1}
+.crbox{display:flex;align-items:center;gap:12px;background:linear-gradient(140deg,#f6f9fd,#eef3fa);border:1.5px solid var(--line);border-radius:12px;padding:11px 14px}
+.crbox .num{font-size:1.9rem;font-weight:900;line-height:1;color:var(--nv6);font-variant-numeric:tabular-nums}
+.eqside.s25 .crbox .num{color:var(--uvd)}
+.crbox .lb{font-size:.66rem;font-weight:900;letter-spacing:.09em;text-transform:uppercase;color:var(--ink3);line-height:1.3}
+.crbox .ic{margin-left:auto;font-size:1.2rem;opacity:.5}
+.antb{border-radius:12px;padding:12px 14px;border:1.5px solid #ffdda1;border-left:4px solid var(--amber);background:var(--amberl)}
+.antb .ak{font-size:.64rem;font-weight:900;letter-spacing:.07em;text-transform:uppercase;color:var(--amberd);margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.antb.none{background:#e6f7ec;border-color:#b9e6c8;border-left-color:var(--uv)}
+.antb.none .ak{color:var(--uvd)}
+.antb .ok{font-size:.82rem;font-weight:900;color:var(--uvd)}
+.antchips{display:flex;flex-wrap:wrap;gap:6px}
+.antchip{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1.5px solid #ffcf85;color:var(--nv7);
+  border-radius:9px;padding:6px 10px;font-size:.74rem;font-weight:800;line-height:1.3;cursor:pointer;transition:.16s;text-align:left;font-family:inherit}
+.antchip:hover{background:var(--amber);border-color:var(--amberd);color:#3a2600;transform:translateY(-2px)}
+.antchip .ar{font-size:.68rem;opacity:.7}
+.eqconn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;padding:16px 6px;
+  background:linear-gradient(180deg,#f7fafd,#eaf1f9);border-left:1px solid var(--line);border-right:1px solid var(--line)}
+.connbadge{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;font-size:1.35rem;color:#fff;
+  background:linear-gradient(135deg,var(--nv6),var(--viol));box-shadow:0 8px 22px rgba(26,58,107,.34);border:3px solid #fff;animation:pop2 .4s cubic-bezier(.2,.85,.3,1)}
+@keyframes pop2{from{transform:scale(.7);opacity:0}to{transform:scale(1);opacity:1}}
+.connbadge.ok{background:linear-gradient(135deg,var(--uvd),var(--mint));color:#04240f}
+.connbadge.warn{background:linear-gradient(135deg,var(--amberd),var(--amber))}
+.connbadge.no{background:linear-gradient(135deg,var(--redd),var(--red))}
+.connbadge.new{background:linear-gradient(135deg,var(--cyand),var(--cyan))}
+.conntxt{font-size:.6rem;font-weight:900;text-align:center;color:var(--ink2);letter-spacing:.05em;line-height:1.35}
+.connline{width:2px;flex:1;min-height:18px;background:linear-gradient(180deg,transparent,var(--line2),transparent)}
+.eqmiss{font-size:.83rem;line-height:1.6;color:var(--ink2);font-weight:600}
+
 .deck{background:linear-gradient(150deg,#fff,#f2f7fc);border:1.5px solid var(--line2);border-radius:var(--r);box-shadow:var(--s1);overflow:hidden;margin-bottom:16px;position:sticky;top:var(--top);z-index:400}
 .deck-h{display:flex;align-items:center;gap:10px;padding:9px 14px;background:linear-gradient(100deg,#eaf2fb,#f4f8fd);border-bottom:1px solid var(--line);flex-wrap:wrap}
 .deck-h .l{font-size:.67rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:var(--nv6)}
@@ -241,7 +212,6 @@ body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opa
 .tog.amber:has(input:checked) i{background:linear-gradient(90deg,var(--amber),#ffc861)}
 .selmini{padding:8px 11px;border:2px solid var(--line2);border-radius:10px;font-family:inherit;font-weight:800;font-size:.75rem;cursor:pointer;background:#fff;color:var(--ink2)}
 
-/* ══ COMPARE ══ */
 .cmp{background:#fff;border:1.5px solid var(--line);border-radius:var(--r);overflow:hidden;box-shadow:var(--s1)}
 .cmp-h{display:grid;grid-template-columns:1fr 46px 1fr;background:linear-gradient(100deg,var(--nv7),var(--nv6));color:#fff}
 .cmp-h div{padding:11px 14px;font-weight:900;font-size:.8rem}
@@ -249,8 +219,8 @@ body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opa
 .cmp-g{padding:8px 14px;font-size:.7rem;font-weight:900;letter-spacing:.04em;color:#fff;display:flex;align-items:center;gap:8px;line-height:1.35}
 .cmp-g.f-BAS{background:linear-gradient(100deg,var(--uvd),var(--uv))}
 .cmp-g.f-DIS{background:linear-gradient(100deg,var(--blued),var(--blue))}
-.cmp-g.f-TER{background:linear-gradient(100deg,var(--viold),var(--viol))}
 .cmp-g.f-LIB{background:linear-gradient(100deg,var(--amberd),var(--amber))}
+.cmp-g.f-TER{background:linear-gradient(100deg,var(--viold),var(--viol))}
 .cmp-g span{margin-left:auto;background:rgba(255,255,255,.24);padding:2px 9px;border-radius:20px;font-size:.65rem;flex:none}
 .cmp-r{display:grid;grid-template-columns:1fr 46px 1fr;border-bottom:1px solid var(--line);transition:.16s;cursor:pointer}
 .cmp-r:hover{background:#f2f8ff}
@@ -264,7 +234,6 @@ body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opa
 .empty{text-align:center;padding:46px 20px;color:var(--ink3)}
 .empty .big{font-size:2.6rem;margin-bottom:10px;opacity:.5}
 
-/* ══ SECTIONS ══ */
 .sec{margin-top:32px;scroll-margin-top:calc(var(--top) + 18px)}
 .sec-h{display:flex;align-items:center;gap:11px;margin-bottom:14px;flex-wrap:wrap}
 .sec-h .n{width:32px;height:32px;border-radius:10px;display:grid;place-items:center;font-weight:900;font-size:.85rem;color:#fff;background:linear-gradient(135deg,var(--nv6),var(--nv5));box-shadow:0 5px 15px rgba(26,58,107,.3)}
@@ -294,7 +263,6 @@ body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opa
 .note{background:linear-gradient(140deg,#f2f8ff,#e9f3fd);border:1.5px solid #bcd9f5;border-left:5px solid var(--blue);border-radius:12px;padding:13px 16px;font-size:.84rem;line-height:1.6;color:#144a7d;margin-top:13px}
 .note b{color:var(--blued)}
 
-/* ══ FOOT ══ */
 .foot{margin-top:34px;background:linear-gradient(160deg,var(--nv9),var(--nv7));color:#c9d9ee;border-radius:var(--rl);padding:24px;text-align:center;font-size:.82rem;line-height:1.72;border-top:4px solid var(--uv);position:relative;overflow:hidden}
 .foot::after{content:"";position:absolute;inset:0;background:radial-gradient(24rem 10rem at 80% 0%,rgba(32,201,151,.22),transparent 70%),radial-gradient(18rem 9rem at 12% 110%,rgba(124,58,237,.24),transparent 72%)}
 .foot>*{position:relative;z-index:2}
@@ -316,7 +284,6 @@ body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opa
 .vlabel{font-size:.75rem;color:#a9c1de;font-weight:700}
 .warn{margin-top:12px;font-size:.75rem;color:#ffd694;background:rgba(245,158,11,.14);border:1px solid rgba(245,158,11,.34);border-radius:10px;padding:9px 14px;display:inline-block}
 
-/* ══ MODAL ══ */
 .modal{position:fixed;inset:0;z-index:900;display:none;align-items:center;justify-content:center;padding:14px;background:var(--scrim);backdrop-filter:blur(5px)}
 .modal.on{display:flex;animation:fade .24s}
 @keyframes fade{from{opacity:0}to{opacity:1}}
@@ -330,7 +297,6 @@ body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opa
 .mb{overflow:auto;padding:16px;background:#eef2f7;flex:1}
 .paper{background:#fff;box-shadow:var(--s2);padding:24px;max-width:940px;margin:0 auto;border-radius:6px}
 
-/* ══ RETÍCULA ══ */
 .ret{font-size:.76rem;color:#111}
 .ret-h{text-align:center;border-bottom:3px solid var(--uv);padding-bottom:10px;margin-bottom:13px}
 .ret-h .u{font-size:.62rem;font-weight:900;letter-spacing:.16em;color:var(--uvd)}
@@ -341,7 +307,7 @@ body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opa
 .ret-meta span{font-size:.65rem;font-weight:800;background:#eef3fa;border:1px solid var(--line2);color:var(--nv6);padding:3px 10px;border-radius:20px}
 .ret-sec{margin-bottom:15px}
 .ret-sh{display:flex;align-items:center;gap:8px;padding:7px 11px;border-radius:7px;color:#fff;margin-bottom:8px;flex-wrap:wrap}
-.ret-sh.f-BAS{background:var(--uvd)}.ret-sh.f-DIS{background:var(--blued)}.ret-sh.f-TER{background:var(--viold)}.ret-sh.f-LIB{background:var(--amberd)}
+.ret-sh.f-BAS{background:var(--uvd)}.ret-sh.f-DIS{background:var(--blued)}.ret-sh.f-LIB{background:var(--amberd)}.ret-sh.f-TER{background:var(--viold)}
 .ret-sh h3{font-size:.78rem;font-weight:900;flex:1;line-height:1.35}
 .ret-sh .t{font-size:.63rem;font-weight:800;background:rgba(255,255,255,.24);padding:2px 9px;border-radius:20px;flex:none}
 table.ret-t{width:100%;border-collapse:collapse;font-size:.68rem}
@@ -402,10 +368,11 @@ table.ret-t tr.tot td{background:#e7eef8!important;font-weight:900;color:var(--n
   .brand .t2{display:none}.brand .t1{font-size:.82rem}
   .tbtn{padding:8px 11px;font-size:.74rem}
   .hero{padding:20px 17px}
-  .finder{grid-template-columns:1fr;gap:12px}
-  .mid{flex-direction:row;padding:0}
-  .midbadge{width:46px;height:46px;font-size:1.15rem}
-  .rgrid{grid-template-columns:1fr}
+  .finder{grid-template-columns:1fr}
+  .eqcard{grid-template-columns:1fr}
+  .eqconn{flex-direction:row;border-left:none;border-right:none;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:12px}
+  .connline{width:auto;height:2px;flex:1;min-height:0;min-width:18px;background:linear-gradient(90deg,transparent,var(--line2),transparent)}
+  .connbadge{width:46px;height:46px;font-size:1.15rem}
   .ctrls{grid-template-columns:1fr 1fr}
   .cmp-h,.cmp-r{grid-template-columns:1fr 32px 1fr}
   .cmp-h div,.cmp-r>div{padding:9px 10px;font-size:.7rem}
@@ -415,7 +382,7 @@ table.ret-t tr.tot td{background:#e7eef8!important;font-weight:900;color:var(--n
   .deck{position:static}
   .cb-list{max-height:270px}
 }
-@media(max-width:520px){.ctrls{grid-template-columns:1fr}.modes{flex-direction:column}.hstats{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.ctrls{grid-template-columns:1fr}.modes{flex-direction:column}}
 </style>
 </head>
 <body>
@@ -431,7 +398,9 @@ table.ret-t tr.tot td{background:#e7eef8!important;font-weight:900;color:var(--n
     <a href="#comparar">🔁 Comparar plan</a>
     <a href="#reticulas">🖨️ Retículas</a>
   </nav>
+  <button class="icobtn" id="xlsBtn" title="Cargar Excel de equivalencias (AREA DEL CURSO)" aria-label="Cargar Excel de equivalencias">📂</button>
   <button class="tbtn" onclick="openPick()">🖨️ Retícula</button>
+  <input type="file" id="fileInput" accept=".xlsx,.xls" style="display:none">
 </header>
 
 <div class="wrap">
@@ -439,19 +408,7 @@ table.ret-t tr.tot td{background:#e7eef8!important;font-weight:900;color:var(--n
   <section class="hero">
     <div class="uvtag">UNIVERSIDAD VERACRUZANA · FACICO</div>
     <h1>Equivalencias <em>Plan 2004 ↔ Plan 2025</em></h1>
-    <p>Escribe o elige tu Experiencia Educativa en el plan que cursas y verás al instante su equivalente en el otro plan, el <strong>área del curso</strong> y los antecedentes que debes tener acreditados.</p>
-    <div class="hstats">
-      <div class="hs b"><b id="st04">0</b><span>EXPERIENCIAS PLAN 2004</span></div>
-      <div class="hs g"><b id="st25">0</b><span>EXPERIENCIAS PLAN 2025</span></div>
-      <div class="hs p"><b id="stEq">0</b><span>EQUIVALENCIAS DIRECTAS</span></div>
-      <div class="hs a"><b id="stAnt">0</b><span>CON ANTECEDENTE</span></div>
-    </div>
-    <div class="srcbar">
-      <span class="srcbadge" id="srcBadge">📗 Catálogo integrado</span>
-      <button class="srcbtn" onclick="fileInput.click()">📂 Cargar Excel de equivalencias</button>
-      <span class="srchint">Lee la columna <b>AREA DEL CURSO</b> de las hojas PLAN 2004 y PLAN 2025. También puedes arrastrar el archivo aquí.</span>
-      <input type="file" id="fileInput" accept=".xlsx,.xls" style="display:none">
-    </div>
+    <p>Escribe o elige tu Experiencia Educativa y verás con cuál equivale en el otro plan, cuántos créditos tiene y si requiere antecedentes.</p>
   </section>
 
   <div class="modes" id="modes">
@@ -459,7 +416,6 @@ table.ret-t tr.tot td{background:#e7eef8!important;font-weight:900;color:var(--n
     <button data-m="cmp" class="b">🔁 Comparar todo el plan</button>
   </div>
 
-  <!-- CONSULTA -->
   <section class="panel on" id="pFind">
     <div id="consulta"></div>
     <div class="finder">
@@ -477,11 +433,6 @@ table.ret-t tr.tot td{background:#e7eef8!important;font-weight:900;color:var(--n
             <div class="cb-list" id="ls04" role="listbox"></div>
           </div>
         </div>
-        <p class="hint">Áreas del curso: Básica · Disciplinaria · Terminal en Nuevas Tecnologías, Comunicación Organizacional y Periodismo · Elección libre.</p>
-      </div>
-      <div class="mid">
-        <div class="midbadge" id="badge">⇄</div>
-        <div class="midtxt" id="badgeTxt">EQUIVALENCIA</div>
       </div>
       <div class="side p25">
         <div class="sh"><div class="si">🎓</div><div><h2>PLAN 2025</h2><div class="ss">Ingreso 2025 en adelante</div></div></div>
@@ -497,7 +448,6 @@ table.ret-t tr.tot td{background:#e7eef8!important;font-weight:900;color:var(--n
             <div class="cb-list" id="ls25" role="listbox"></div>
           </div>
         </div>
-        <p class="hint">Áreas del curso: Básica · Disciplinaria · Terminal en Comunicación Digital, Periodismo y Comunicación Organizacional · Elección libre.</p>
       </div>
     </div>
 
@@ -510,16 +460,12 @@ table.ret-t tr.tot td{background:#e7eef8!important;font-weight:900;color:var(--n
     <div class="blank" id="findBlank">
       <div class="big">⇄</div>
       <h3>Escribe o elige una Experiencia Educativa</h3>
-      <p>Puedes empezar por cualquiera de los dos planes. La equivalencia del otro lado se muestra automáticamente, junto con el área del curso y sus antecedentes.</p>
+      <p>Puedes empezar por cualquiera de los dos planes. Verás su equivalente, los créditos y los antecedentes de ambas.</p>
     </div>
 
-    <div class="result" id="findResult">
-      <div class="rgrid" id="fichas"></div>
-      <div id="verdict"></div>
-    </div>
+    <div class="result" id="findResult"></div>
   </section>
 
-  <!-- COMPARAR -->
   <section class="panel" id="pCmp">
     <div id="comparar"></div>
     <div class="deck">
@@ -527,7 +473,7 @@ table.ret-t tr.tot td{background:#e7eef8!important;font-weight:900;color:var(--n
       <div class="deck-b">
         <div class="ctrls">
           <div class="fld wide"><label for="qCmp">🔍 Buscar en ambos planes</label><input id="qCmp" type="search" placeholder="Nombre, antecedente, equivalencia o área…" autocomplete="off"></div>
-          <div class="fld"><label for="fFam">🧩 Área</label><select id="fFam"><option value="">Todas</option><option value="BAS">🧩 Básica</option><option value="DIS">🔬 Disciplinaria</option><option value="TER">🎯 Terminal</option><option value="LIB">🎲 Elección libre</option></select></div>
+          <div class="fld"><label for="fFam">🧩 Área</label><select id="fFam"><option value="">Todas</option><option value="BAS">🧩 Básica</option><option value="DIS">🔬 Disciplinaria</option><option value="LIB">🎲 Elección libre</option><option value="TER">🎯 Terminal</option></select></div>
           <div class="fld"><label for="fArea">📚 Área del curso</label><select id="fArea"><option value="">Todas</option></select></div>
           <div class="fld"><label for="fTipo">🔁 Tipo</label><select id="fTipo"><option value="">Todos</option><option value="directa">✅ Directa</option><option value="parcial">⚠️ Parcial</option><option value="nueva">🆕 Nueva 2025</option><option value="sin">⛔ Sin equivalente</option></select></div>
           <div class="fld"><label for="fOrd">↕️ Orden</label><select id="fOrd"><option value="area">Área y nombre</option><option value="az">Nombre A → Z</option><option value="cr">Créditos</option><option value="ant">Con antecedente</option></select></div>
@@ -544,14 +490,13 @@ table.ret-t tr.tot td{background:#e7eef8!important;font-weight:900;color:var(--n
     <div id="cmpOut"></div>
   </section>
 
-  <!-- RETÍCULAS -->
   <section class="sec" id="reticulas">
     <div class="sec-h">
       <div class="n">🖨️</div><h2>Retículas · Ciencias de la Comunicación</h2>
-      <p>Una retícula por plan, organizada por <strong>área del curso</strong> —incluidas las áreas terminales— con créditos, antecedentes, equivalencia y una columna en blanco para tus anotaciones.</p>
+      <p>Una retícula por plan con créditos, antecedentes y equivalencia. El área terminal se coloca al final.</p>
     </div>
     <div class="pgrid" id="printCards"></div>
-    <div class="note"><b>📄 Al imprimir:</b> cada área del curso comienza en una hoja nueva. La retícula sirve igual para Escolarizado y para Abierto.</div>
+    <div class="note"><b>📄 Al imprimir:</b> cada área comienza en una hoja nueva y el área terminal cierra la retícula. Sirve igual para Escolarizado y Abierto.</div>
   </section>
 
   <footer class="foot">
@@ -587,14 +532,13 @@ table.ret-t tr.tot td{background:#e7eef8!important;font-weight:900;color:var(--n
 <div id="printRoot"></div>
 
 <script>
-/* ═══════════ CATÁLOGO SEMILLA ═══════════ */
-const FAM={BAS:{n:'BÁSICA',ic:'🧩'},DIS:{n:'DISCIPLINARIA',ic:'🔬'},TER:{n:'TERMINAL',ic:'🎯'},LIB:{n:'ELECCIÓN LIBRE',ic:'🎲'}};
-const A04={BAS:'AREA DE FORMACION BASICA',DIS:'AREA DE FORMACION DISCIPLINARIA',
+const FAM={BAS:{n:'BÁSICA',ic:'🧩'},DIS:{n:'DISCIPLINARIA',ic:'🔬'},LIB:{n:'ELECCIÓN LIBRE',ic:'🎲'},TER:{n:'TERMINAL',ic:'🎯'}};
+const A04={BAS:'AREA DE FORMACION BASICA',DIS:'AREA DE FORMACION DISCIPLINARIA',LIB:'AREA DE FORMACION DE ELECCION LIBRE',
   NT:'AREA DE FORMACION TERMINAL EN NUEVAS TECNOLOGIAS',CO:'AREA DE FORMACION TERMINAL EN COMUNICACION ORGANIZACIONAL',
-  PE:'AREA DE FORMACION TERMINAL EN PERIODISMO',TI:'AREA DE FORMACION TERMINAL',LIB:'AREA DE FORMACION DE ELECCION LIBRE'};
-const A25={BAS:'AREA DE FORMACION BASICA',DIS:'AREA DE FORMACION DISCIPLINARIA',
+  PE:'AREA DE FORMACION TERMINAL EN PERIODISMO',TI:'AREA DE FORMACION TERMINAL'};
+const A25={BAS:'AREA DE FORMACION BASICA',DIS:'AREA DE FORMACION DISCIPLINARIA',LIB:'AREA DE FORMACION DE ELECCION LIBRE',
   CD:'AREA DE FORMACION TERMINAL EN COMUNICACION DIGITAL',P2:'AREA DE FORMACION TERMINAL EN PERIODISMO',
-  C2:'AREA DE FORMACION TERMINAL EN COMUNICACION ORGANIZACIONAL',TI:'AREA DE FORMACION TERMINAL',LIB:'AREA DE FORMACION DE ELECCION LIBRE'};
+  C2:'AREA DE FORMACION TERMINAL EN COMUNICACION ORGANIZACIONAL',TI:'AREA DE FORMACION TERMINAL'};
 function E(n,f,ar,cr,ant,eq,t){return{n,f,ar,cr,ant:ant||[],eq:eq||[],t:t||'directa'}}
 const SEED04=[
 E('INGLES I','BAS',A04.BAS,6,[],['LENGUA I']),
@@ -648,6 +592,7 @@ E('CAMPAÑAS DE COMUNICACION PUBLICITARIA Y POLITICA','DIS',A04.DIS,6,[],['CAMPA
 E('DISEÑO Y CREATIVIDAD GRAFICA EN PUBLICIDAD','DIS',A04.DIS,6,[],['DISEÑO CREATIVO DE MENSAJES PUBLICITARIOS Y POLITICOS']),
 E('ESTRATEGIAS PARA LA PRODUCCION DE PUBLICIDAD Y PROPAGANDA','DIS',A04.DIS,5,['DISEÑO Y CREATIVIDAD GRAFICA EN PUBLICIDAD'],['DISEÑO CREATIVO DE MENSAJES PUBLICITARIOS Y POLITICOS'],'parcial'),
 E('REALIZACION DE PROYECTOS RADIOFONICOS','DIS',A04.DIS,4,[],['PRODUCCION DE PROYECTOS SONOROS']),
+E('OPTATIVAS DE ELECCION LIBRE','LIB',A04.LIB,28,[],['ELECCION LIBRE'],'parcial'),
 E('ANALISIS CINEMATOGRAFICO','TER',A04.NT,6,[],['CINE, ESTETICA Y REALIZACION']),
 E('ANIMACION DIGITAL','TER',A04.NT,4,[],['ANIMACION MULTIPLATAFORMA']),
 E('PROYECTOS RADIOFONICOS EXPERIMENTALES','TER',A04.NT,4,[],['PRODUCCION SONORA AVANZADA']),
@@ -666,8 +611,7 @@ E('PERIODISMO DIGITAL','TER',A04.PE,6,[],['CIBERPERIODISMO']),
 E('PERIODISMO ESPECIALIZADO','TER',A04.PE,6,[],['ESPECIALIZACION PERIODISTICA'],'parcial'),
 E('TALLER DE REDACCION: GENEROS DE OPINION','TER',A04.PE,4,[],['PERIODISMO DE OPINION']),
 E('SERVICIO SOCIAL','TER',A04.TI,4,[],['SERVICIO SOCIAL']),
-E('EXPERIENCIA RECEPCIONAL','TER',A04.TI,12,[],['EXPERIENCIA RECEPCIONAL']),
-E('OPTATIVAS DE ELECCION LIBRE','LIB',A04.LIB,28,[],['ELECCION LIBRE'],'parcial')
+E('EXPERIENCIA RECEPCIONAL','TER',A04.TI,12,[],['EXPERIENCIA RECEPCIONAL'])
 ];
 const SEED25=[
 E('LENGUA I','BAS',A25.BAS,4,[],['INGLES I']),
@@ -723,6 +667,7 @@ E('OPINION PUBLICA','DIS',A25.DIS,8,[],['COMUNICACION Y OPINION PUBLICA']),
 E('TENDENCIAS SOCIOLOGICAS DE LA COMUNICACION','DIS',A25.DIS,8,[],['SOCIOLOGIA DE LA COMUNICACION']),
 E('ECONOMIA Y COMUNICACION PARA EL DESARROLLO SUSTENTABLE','DIS',A25.DIS,5,[],['COMUNICACION Y DESARROLLO ECONOMICO SUSTENTABLE']),
 E('ECONOMIA DE LA INFORMACION Y GLOBALIZACION','DIS',A25.DIS,5,[],['ECONOMIA DE LA INFORMACION Y GLOBALIZACION']),
+E('ELECCION LIBRE','LIB',A25.LIB,24,[],['OPTATIVAS DE ELECCION LIBRE'],'parcial'),
 E('CINE, ESTETICA Y REALIZACION','TER',A25.CD,4,[],['ANALISIS CINEMATOGRAFICO']),
 E('ANIMACION MULTIPLATAFORMA','TER',A25.CD,5,[],['ANIMACION DIGITAL']),
 E('PRODUCCION SONORA AVANZADA','TER',A25.CD,5,[],['PROYECTOS RADIOFONICOS EXPERIMENTALES']),
@@ -743,13 +688,11 @@ E('CAMPAÑAS PUBLICITARIAS Y POLITICAS','TER',A25.C2,4,[],['CAMPAÑAS DE COMUNIC
 E('CONSULTORIA EN COMUNICACION','TER',A25.C2,4,[],[],'nueva'),
 E('PRACTICAS PROFESIONALES','TER',A25.TI,4,[],[],'nueva'),
 E('SERVICIO SOCIAL','TER',A25.TI,4,[],['SERVICIO SOCIAL']),
-E('EXPERIENCIA RECEPCIONAL','TER',A25.TI,12,[],['EXPERIENCIA RECEPCIONAL']),
-E('ELECCION LIBRE','LIB',A25.LIB,24,[],['OPTATIVAS DE ELECCION LIBRE'],'parcial')
+E('EXPERIENCIA RECEPCIONAL','TER',A25.TI,12,[],['EXPERIENCIA RECEPCIONAL'])
 ];
 const TOT={'04':391,'25':380};
 const TL={directa:{i:'✅',t:'DIRECTA',c:'ok'},parcial:{i:'⚠️',t:'PARCIAL',c:'warn'},nueva:{i:'🆕',t:'NUEVA 2025',c:'new'},sin:{i:'⛔',t:'SIN EQUIV.',c:'no'}};
 
-/* ═══════════ ESTADO ═══════════ */
 const D={'04':SEED04.map(x=>({...x})),'25':SEED25.map(x=>({...x}))};
 let SRC='Catálogo integrado';
 const $=id=>document.getElementById(id);
@@ -759,36 +702,25 @@ const nz=s=>String(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f
 const find=(p,n)=>D[p].find(x=>x.n===n)||null;
 function toast(m,k){const d=document.createElement('div');d.className='toast'+(k?' '+k:'');d.textContent=m;$('toasts').appendChild(d);
   setTimeout(()=>{d.style.transition='.3s';d.style.opacity='0';d.style.transform='translateX(26px)';setTimeout(()=>d.remove(),320)},3600)}
-function famOf(area){const t=nz(area);
+function famOf(a){const t=nz(a);
   if(t.includes('eleccion libre')||t.includes('libre'))return 'LIB';
   if(t.includes('terminal'))return 'TER';
   if(t.includes('disciplin'))return 'DIS';
   if(t.includes('basic'))return 'BAS';
   return 'DIS'}
-function areaIcon(e){
-  const t=nz(e.ar);
+function areaIcon(e){const t=nz(e.ar);
   if(e.f==='TER'){
     if(t.includes('nuevas tecnologias')||t.includes('comunicacion digital'))return '💻';
     if(t.includes('organizacional'))return '🏢';
     if(t.includes('periodismo'))return '📰';
-    return '🎯';
-  }
-  return FAM[e.f].ic;
-}
-function areaClass(e){
-  if(e.f!=='TER')return 'f-'+e.f;
-  const t=nz(e.ar);
-  if(t.includes('nuevas tecnologias')||t.includes('comunicacion digital'))return 't-NT';
-  if(t.includes('organizacional'))return 't-CO';
-  if(t.includes('periodismo'))return 't-PE';
-  return 'f-TER';
-}
-function chain(e,p){const out=[],seen=new Set();(function w(x,d){if(!x||d>6||seen.has(x.n))return;seen.add(x.n);if(x.ant.length)w(find(p,x.ant[0]),d+1);out.push(x.n)})(e,0);return out}
+    return '🎓'}
+  return FAM[e.f].ic}
+/* Terminal siempre al final; dentro de terminal, la genérica (titulación) cierra */
+function areaRank(ar){const f=famOf(ar);const base={BAS:0,DIS:1,LIB:2,TER:3}[f];
+  const sub=f==='TER'?(nz(ar).trim()==='area de formacion terminal'?1:0):0;return[base,sub]}
 function areaOrder(p){const seen=[];D[p].forEach(e=>{if(!seen.includes(e.ar))seen.push(e.ar)});
-  const rank=a=>({BAS:0,DIS:1,TER:2,LIB:3})[famOf(a)];
-  return seen.sort((a,b)=>rank(a)-rank(b)||a.localeCompare(b,'es'))}
+  return seen.sort((a,b)=>{const x=areaRank(a),y=areaRank(b);return x[0]-y[0]||x[1]-y[1]||a.localeCompare(b,'es')})}
 
-/* ═══════════ COMBOBOX ═══════════ */
 const CB={};
 function initCB(p){
   const wrap=$('cb'+p),inp=$('in'+p),list=$('ls'+p),clr=$('cl'+p),field=wrap.querySelector('.cb-field');
@@ -798,8 +730,7 @@ function initCB(p){
     const groups=areaOrder(p).map(a=>({a,items:D[p].filter(e=>e.ar===a&&(!query||nz(e.n+' '+e.ant.join(' ')+' '+e.eq.join(' ')+' '+e.ar).includes(query)))})).filter(g=>g.items.length);
     st.items=[];let html='';
     groups.forEach(g=>{
-      const f=famOf(g.a);
-      html+=`<div class="cb-grp f-${f}">${FAM[f].ic} ${esc(up(g.a))}</div>`;
+      html+=`<div class="cb-grp f-${famOf(g.a)}">${FAM[famOf(g.a)].ic} ${esc(up(g.a))}</div>`;
       g.items.forEach(e=>{
         const i=st.items.length;st.items.push(e);
         let name=esc(up(e.n));
@@ -820,25 +751,18 @@ function initCB(p){
   function open(){if(st.open)return;st.open=true;wrap.classList.add('open');inp.setAttribute('aria-expanded','true');build(st.sel?'':inp.value)}
   function close(){st.open=false;wrap.classList.remove('open');inp.setAttribute('aria-expanded','false');
     if(st.sel){const e=find(p,st.sel);inp.value=e?up(e.n):''}else inp.value=''}
-  function choose(i){
-    const e=st.items[i];if(!e)return;
-    st.sel=e.n;wrap.classList.add('has');field.classList.add('picked');
-    inp.value=up(e.n);close();pickFrom(p,e.n);
-  }
+  function choose(i){const e=st.items[i];if(!e)return;
+    st.sel=e.n;wrap.classList.add('has');field.classList.add('picked');inp.value=up(e.n);close();pickFrom(p,e.n)}
   inp.addEventListener('focus',()=>{inp.select();open()});
   inp.addEventListener('input',()=>{
     if(st.sel){st.sel=null;wrap.classList.remove('has');field.classList.remove('picked');cur={a:null,b:null};paintFind()}
-    if(!st.open)open();build(inp.value);
-  });
+    if(!st.open)open();build(inp.value)});
   inp.addEventListener('keydown',ev=>{
-    if(ev.key==='ArrowDown'||ev.key==='ArrowUp'){
-      ev.preventDefault();if(!st.open){open();return}
+    if(ev.key==='ArrowDown'||ev.key==='ArrowUp'){ev.preventDefault();if(!st.open){open();return}
       if(!st.items.length)return;
-      st.act=ev.key==='ArrowDown'?(st.act+1)%st.items.length:(st.act<=0?st.items.length-1:st.act-1);mark();
-    }else if(ev.key==='Enter'){
-      ev.preventDefault();if(st.open&&st.act>=0)choose(st.act);else if(st.open&&st.items.length===1)choose(0);
-    }else if(ev.key==='Escape'){close();inp.blur()}
-  });
+      st.act=ev.key==='ArrowDown'?(st.act+1)%st.items.length:(st.act<=0?st.items.length-1:st.act-1);mark()}
+    else if(ev.key==='Enter'){ev.preventDefault();if(st.open&&st.act>=0)choose(st.act);else if(st.open&&st.items.length===1)choose(0)}
+    else if(ev.key==='Escape'){close();inp.blur()}});
   inp.addEventListener('blur',()=>setTimeout(close,120));
   clr.addEventListener('pointerdown',ev=>{ev.preventDefault();st.sel=null;wrap.classList.remove('has');field.classList.remove('picked');inp.value='';
     cur={a:null,b:null};const o=p==='04'?'25':'04';CB[o].sel=null;$('cb'+o).classList.remove('has');$('cb'+o).querySelector('.cb-field').classList.remove('picked');$('in'+o).value='';paintFind();inp.focus()});
@@ -847,76 +771,57 @@ function initCB(p){
   build('');
 }
 
-/* ═══════════ CONSULTA ═══════════ */
 let cur={a:null,b:null};
 function pickFrom(p,name){
   const e=find(p,name);if(!e){cur={a:null,b:null};paintFind();return}
   const o=p==='04'?'25':'04';
   const t=e.eq.length?find(o,e.eq[0]):null;
   cur=p==='04'?{a:e,b:t}:{a:t,b:e};cur.src=p;cur.srcEE=e;
-  CB[p].set(name);CB[o].set(t?t.n:null);
-  paintFind();
+  CB[p].set(name);CB[o].set(t?t.n:null);paintFind();
 }
-function paintFind(){
-  const {a,b}=cur,has=a||b;
-  $('findBlank').style.display=has?'none':'block';
-  $('findResult').classList.toggle('on',!!has);
-  const bd=$('badge'),bt=$('badgeTxt');
-  if(!has){bd.className='midbadge';bd.textContent='⇄';bt.textContent='EQUIVALENCIA';$('fichas').innerHTML='';$('verdict').innerHTML='';return}
-  const m=TL[cur.srcEE.t];bd.className='midbadge '+m.c;bd.textContent=m.i;bt.textContent=m.t;
-  $('fichas').innerHTML=[['04',a],['25',b]].map(([p,e])=>fichaHTML(p,e,cur.srcEE)).join('');
-  $('verdict').innerHTML=verdictHTML(cur.srcEE);
-  $('fichas').querySelectorAll('[data-jump]').forEach(el=>el.addEventListener('click',()=>{
-    pickFrom(el.dataset.p,el.dataset.jump);
-    document.getElementById('consulta').scrollIntoView({behavior:'smooth',block:'start'});
-  }));
-}
-function fichaHTML(p,e,src){
+function sideHTML(p,e){
+  const is25=p==='25';
   if(!e){
-    const nv=src.t==='nueva';
-    return `<div class="ficha"><div class="fh f-NONE">
-      <div class="k">PLAN ${p==='04'?'2004':'2025'}</div><h3>${nv?'🆕 NO EXISTE EN ESTE PLAN':'⛔ SIN EQUIVALENTE REGISTRADO'}</h3>
-      <div class="m"><span>${nv?'EXCLUSIVA DEL PLAN 2025':'CONSULTA A TU TUTOR'}</span></div></div>
-      <div class="fb"><div class="row"><div class="rv" style="font-weight:600;color:var(--ink2);font-size:.83rem;line-height:1.6">
-      ${nv?'Esta Experiencia Educativa fue creada en el Plan 2025 y no tiene origen en el Plan 2004. Si cursas el Plan 2004, consulta con tu tutor si puedes acreditarla como optativa.':'No hay una Experiencia Educativa correspondiente en este plan. La Secretaría de la Facultad debe indicarte la ruta de acreditación alternativa.'}
-      </div></div></div></div>`;
+    const nv=cur.srcEE.t==='nueva';
+    return `<div class="eqside s${p}">
+      <div class="eqh ${nv?'nw':'miss'}"><div class="k">${is25?'🎓':'📜'} PLAN ${is25?'2025':'2004'}</div>
+      <h3>${nv?'🆕 NO EXISTE EN ESTE PLAN':'⛔ SIN EQUIVALENTE'}</h3></div>
+      <div class="eqb"><p class="eqmiss">${nv?'Esta experiencia fue creada en el Plan 2025 y no tiene origen en el Plan 2004. Consulta con tu tutor si puedes acreditarla como optativa.':'No hay experiencia correspondiente en este plan. La Secretaría de la Facultad debe indicarte la ruta de acreditación.'}</p></div></div>`;
   }
-  const ch=chain(e,p),o=p==='04'?'25':'04';
-  return `<div class="ficha">
-    <div class="fh f-${e.f}">
-      <div class="k">PLAN ${p==='04'?'2004':'2025'}</div>
-      <h3>${esc(up(e.n))}</h3>
-      <div class="m"><span>${e.cr} CRÉDITOS</span><span>${TL[e.t].i} ${TL[e.t].t}</span></div>
-    </div>
-    <div class="fb">
-      <div class="row"><div class="rk">Área del curso</div><div><span class="areatag ${areaClass(e)}">${areaIcon(e)} ${esc(up(e.ar))}</span></div></div>
-      <div class="${e.ant.length?'antbox':'antbox none'}">
-        <div class="ak">📌 Antecedentes</div>
-        <div class="an">${e.ant.length?e.ant.map(n=>esc(up(n))).join(' + '):'✅ NO REQUIERE ANTECEDENTE'}</div>
-        ${ch.length>1?`<div class="chain">${ch.map((n,i)=>`<div class="cstep ${i===ch.length-1?'last':''}"><span class="cd">${i+1}</span><span class="cn">${esc(up(n))}</span></div>`+(i<ch.length-1?'<div class="carrow">↓</div>':'')).join('')}</div>`:''}
-      </div>
-      <div class="row"><div class="rk">Equivale en Plan ${o==='04'?'2004':'2025'}</div>
-        ${e.eq.length?e.eq.map(n=>{const t=find(o,n);
-          return `<div class="rv${t?' jump':''}" ${t?`data-jump="${esc(n)}" data-p="${o}"`:''}>➜ ${esc(up(n))}${t?' <span style="font-size:.7rem;color:var(--ink3);font-weight:700">(ver ficha)</span>':''}</div>`}).join(''):'<div class="rv" style="color:var(--redd)">⛔ SIN EQUIVALENTE</div>'}
-      </div>
+  const ant=e.ant.length
+    ? `<div class="antchips">${e.ant.map(n=>`<button class="antchip" data-ant="${esc(n)}" data-p="${p}"><span class="ar">📌</span>${esc(up(n))}</button>`).join('')}</div>`
+    : `<div class="ok">✅ NO REQUIERE ANTECEDENTE</div>`;
+  return `<div class="eqside s${p}">
+    <div class="eqh p${p}"><div class="k">${is25?'🎓':'📜'} PLAN ${is25?'2025':'2004'}</div><h3>${esc(up(e.n))}</h3></div>
+    <div class="eqb">
+      <div class="crbox"><span class="num">${e.cr}</span><span class="lb">Créditos</span><span class="ic">🎓</span></div>
+      <div class="antb${e.ant.length?'':' none'}"><div class="ak">📌 Antecedentes</div>${ant}</div>
     </div></div>`;
 }
-function verdictHTML(s){
-  const t=s.t,o=cur.src==='04'?'2025':'2004',eq=s.eq.length?s.eq.map(up).join(' · '):'';
-  if(t==='directa')return `<div class="verdict ok"><div class="vt">✅ Equivalencia directa</div><b>${esc(up(s.n))}</b> del Plan ${cur.src==='04'?'2004':'2025'} corresponde a <b>${esc(eq)}</b> del Plan ${o}. El contenido es equivalente; el nombre se actualizó en el nuevo plan. Confirma el trámite en la Secretaría de la Facultad.</div>`;
-  if(t==='parcial')return `<div class="verdict warn"><div class="vt">⚠️ Equivalencia parcial</div>Hay correspondencia temática con <b>${esc(eq)}</b>, pero puede existir diferencia de contenido o créditos. <b>Esta equivalencia debe dictaminarla la Secretaría de la Facultad.</b></div>`;
-  if(t==='nueva')return `<div class="verdict new"><div class="vt">🆕 Experiencia nueva del Plan 2025</div><b>${esc(up(s.n))}</b> no existe en el Plan 2004. Si cursas el Plan 2004, consulta con tu tutor la posibilidad de acreditarla como optativa de elección libre.</div>`;
-  return `<div class="verdict no"><div class="vt">⛔ Sin equivalente registrado</div>No se identificó una Experiencia Educativa correspondiente en el Plan ${o}. Acude con tu tutor o a la Secretaría de la Facultad para definir tu ruta de acreditación.</div>`;
+function paintFind(){
+  const has=cur.a||cur.b;
+  $('findBlank').style.display=has?'none':'block';
+  const r=$('findResult');r.classList.toggle('on',!!has);
+  if(!has){r.innerHTML='';return}
+  const m=TL[cur.srcEE.t];
+  r.innerHTML=`<div class="eqcard">
+    ${sideHTML('04',cur.a)}
+    <div class="eqconn"><div class="connline"></div><div class="connbadge ${m.c}">${m.i}</div><div class="conntxt">${m.t}</div><div class="connline"></div></div>
+    ${sideHTML('25',cur.b)}
+  </div>`;
+  r.querySelectorAll('[data-ant]').forEach(b=>b.addEventListener('click',()=>{
+    pickFrom(b.dataset.p,b.dataset.ant);
+    document.getElementById('consulta').scrollIntoView({behavior:'smooth',block:'start'});
+  }));
 }
 function clearFind(){cur={a:null,b:null};['04','25'].forEach(p=>CB[p].set(null));paintFind();toast('Selección limpiada ↺')}
 function copyPair(){
   if(!cur.a&&!cur.b){toast('Selecciona primero una experiencia','w');return}
-  const f=(p,e)=>e?[`PLAN ${p==='04'?'2004':'2025'}`,up(e.n),`Área del curso: ${up(e.ar)}`,`Créditos: ${e.cr}`,`Antecedentes: ${e.ant.length?e.ant.map(up).join(' + '):'Ninguno'}`].join('\n'):`PLAN ${p==='04'?'2004':'2025'}: sin equivalente`;
-  const txt=[f('04',cur.a),'','⇄ EQUIVALENCIA '+TL[cur.srcEE.t].t,'',f('25',cur.b),'','Fuente: Equivalencias LCC · Facico · Universidad Veracruzana'].join('\n');
+  const f=(p,e)=>e?[`PLAN ${p==='04'?'2004':'2025'}`,up(e.n),`Créditos: ${e.cr}`,`Antecedentes: ${e.ant.length?e.ant.map(up).join(' + '):'Ninguno'}`].join('\n'):`PLAN ${p==='04'?'2004':'2025'}: sin equivalente`;
+  const txt=[f('04',cur.a),'','⇄ '+TL[cur.srcEE.t].t,'',f('25',cur.b),'','Equivalencias LCC · Facico · Universidad Veracruzana'].join('\n');
   navigator.clipboard?.writeText(txt).then(()=>toast('Resultado copiado 📋')).catch(()=>toast('No se pudo copiar','w'));
 }
 
-/* ═══════════ COMPARAR ═══════════ */
 const C={q:'',fam:'',area:'',tipo:'',ord:'area',ant:false,dir:false,dens:'comoda'};
 function pairs(){
   const out=[],seen=new Set(),q=nz(C.q);
@@ -927,17 +832,17 @@ function pairs(){
     if(C.ant&&!e.ant.length)return false;
     if(C.dir&&e.t!=='directa')return false;
     if(q&&!nz(e.n+' '+e.ant.join(' ')+' '+e.eq.join(' ')+' '+e.ar).includes(q))return false;
-    return true;
-  };
+    return true};
   D['04'].forEach(a=>{if(!ok(a))return;seen.add(a.n);
     const b=a.eq.length?find('25',a.eq[0]):null;if(b)seen.add(b.n);
     out.push({a,b,t:a.t,extra:a.eq.slice(1)})});
   D['25'].forEach(b=>{if(seen.has(b.n)||!ok(b))return;out.push({a:null,b,t:b.t,extra:[]})});
-  const rank={BAS:0,DIS:1,TER:2,LIB:3},key=p=>p.a||p.b;
+  const key=p=>p.a||p.b;
   if(C.ord==='az')out.sort((x,y)=>key(x).n.localeCompare(key(y).n,'es'));
   else if(C.ord==='cr')out.sort((x,y)=>key(y).cr-key(x).cr);
   else if(C.ord==='ant')out.sort((x,y)=>(key(y).ant.length?1:0)-(key(x).ant.length?1:0)||key(x).n.localeCompare(key(y).n,'es'));
-  else out.sort((x,y)=>rank[key(x).f]-rank[key(y).f]||key(x).ar.localeCompare(key(y).ar,'es')||key(x).n.localeCompare(key(y).n,'es'));
+  else out.sort((x,y)=>{const a=areaRank(key(x).ar),b=areaRank(key(y).ar);
+    return a[0]-b[0]||a[1]-b[1]||key(x).ar.localeCompare(key(y).ar,'es')||key(x).n.localeCompare(key(y).n,'es')});
   return out;
 }
 function renderCmp(){
@@ -957,13 +862,11 @@ function renderCmp(){
   $('cmpOut').querySelectorAll('.cmp-r').forEach(r=>r.addEventListener('click',()=>{
     const p=list[+r.dataset.i],e=p.a||p.b;
     setMode('find');pickFrom(p.a?'04':'25',e.n);
-    document.getElementById('consulta').scrollIntoView({behavior:'smooth',block:'start'});
-  }));
+    document.getElementById('consulta').scrollIntoView({behavior:'smooth',block:'start'})}));
 }
 function fillAreaFilter(){
   const all=[...new Set([...D['04'].map(e=>e.ar),...D['25'].map(e=>e.ar)])];
-  const rank=a=>({BAS:0,DIS:1,TER:2,LIB:3})[famOf(a)];
-  all.sort((a,b)=>rank(a)-rank(b)||a.localeCompare(b,'es'));
+  all.sort((a,b)=>{const x=areaRank(a),y=areaRank(b);return x[0]-y[0]||x[1]-y[1]||a.localeCompare(b,'es')});
   $('fArea').innerHTML='<option value="">Todas</option>'+all.map(a=>`<option value="${esc(a)}">${FAM[famOf(a)].ic} ${esc(up(a))}</option>`).join('');
   if(!all.includes(C.area)){C.area='';$('fArea').value=''}
 }
@@ -971,8 +874,7 @@ function resetCmp(){
   Object.assign(C,{q:'',fam:'',area:'',tipo:'',ord:'area',ant:false,dir:false,dens:'comoda'});
   $('qCmp').value='';$('fFam').value='';$('fArea').value='';$('fTipo').value='';$('fOrd').value='area';
   $('tAnt').checked=false;$('tDir').checked=false;$('fDens').value='comoda';
-  renderCmp();toast('Filtros restablecidos ↺');
-}
+  renderCmp();toast('Filtros restablecidos ↺')}
 function exportCSV(){
   const rows=[['Area del curso','Plan 2004','CR 2004','Antecedentes 2004','Plan 2025','CR 2025','Antecedentes 2025','Tipo']];
   pairs().forEach(p=>{const k=p.a||p.b;
@@ -981,24 +883,21 @@ function exportCSV(){
   const csv=rows.map(r=>r.map(c=>'"'+String(c==null?'':c).replace(/"/g,'""')+'"').join(',')).join('\r\n');
   const b=new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8;'});
   const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='equivalencias-lcc-2004-2025.csv';
-  document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),1500);toast('CSV descargado 📥');
-}
+  document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),1500);toast('CSV descargado 📥')}
 
-/* ═══════════ RETÍCULAS (2) ═══════════ */
-const PRINTS=[{p:'04',t:'Plan 2004',s:'Ciencias de la Comunicación',ic:'📜'},{p:'25',t:'Plan 2025',s:'Ciencias de la Comunicación',ic:'🎓'}];
+const PRINTS=[{p:'04',t:'Plan 2004',ic:'📜'},{p:'25',t:'Plan 2025',ic:'🎓'}];
 function retHTML(plan){
   const l=D[plan],o=plan==='04'?'25':'04';
   let h=`<div class="ret"><div class="ret-h">
     <div class="u">UNIVERSIDAD VERACRUZANA · FACULTAD DE CIENCIAS Y TÉCNICAS DE LA COMUNICACIÓN</div>
     <h2>RETÍCULA · PLAN ${plan==='04'?'2004':'2025'} · CIENCIAS DE LA COMUNICACIÓN</h2>
     <div class="s">Licenciatura en Ciencias de la Comunicación · Área Académica de Humanidades</div>
-    <div class="m">Experiencias Educativas por área del curso, con antecedentes y equivalencia al Plan ${o==='04'?'2004':'2025'}</div></div>
-    <div class="ret-meta"><span>📚 ${l.length} experiencias</span><span>🎓 Créditos mínimos del plan: ${TOT[plan]}</span><span>📌 Antecedentes aplican en Escolarizado y Abierto</span><span>🗂️ ${areaOrder(plan).length} áreas del curso</span></div>`;
+    <div class="m">Experiencias Educativas con créditos, antecedentes y equivalencia al Plan ${o==='04'?'2004':'2025'}</div></div>
+    <div class="ret-meta"><span>📚 ${l.length} experiencias</span><span>🎓 Créditos mínimos del plan: ${TOT[plan]}</span><span>📌 Antecedentes aplican en Escolarizado y Abierto</span></div>`;
   areaOrder(plan).forEach((ar,idx)=>{
     const items=l.filter(e=>e.ar===ar),f=famOf(ar),sum=items.reduce((s,e)=>s+e.cr,0);
-    const ic=areaIcon(items[0]);
-    h+=`<div class="ret-sec${idx>0?' newpage':''}"><div class="ret-sh f-${f}"><h3>${ic} ${esc(up(ar))}</h3>
-      <span class="t">${items.length} EEs</span><span class="t">${sum} CR LISTADOS</span></div>
+    h+=`<div class="ret-sec${idx>0?' newpage':''}"><div class="ret-sh f-${f}"><h3>${areaIcon(items[0])} ${esc(up(ar))}</h3>
+      <span class="t">${items.length} EEs</span><span class="t">${sum} CR</span></div>
       <table class="ret-t"><thead><tr><th style="width:31%">Experiencia Educativa</th><th style="width:32px">CR</th>
       <th style="width:23%">📌 Antecedentes</th><th style="width:23%">🔁 Equivalencia Plan ${o==='04'?'2004':'2025'}</th><th style="width:96px">✍️ Anotaciones</th></tr></thead><tbody>
       ${items.map(e=>`<tr><td class="n">${esc(up(e.n))}</td><td class="c">${e.cr}</td>
@@ -1016,48 +915,32 @@ function retHTML(plan){
 }
 function cardsHTML(){
   return PRINTS.map(x=>{
-    const l=D[x.p],areas=areaOrder(x.p);
+    const l=D[x.p];
     return `<div class="pc p${x.p}">
-      <div class="ph"><div class="pi">${x.ic}</div><div><h3>${x.t}</h3><div class="sm">${x.s}</div></div></div>
-      <ul>
-        <li>📚 <b>${l.length}</b> experiencias educativas</li>
-        <li>🗂️ <b>${areas.length}</b> áreas del curso, incluidas las terminales</li>
-        <li>🎓 <b>${TOT[x.p]}</b> créditos mínimos del plan</li>
-        <li>📌 Antecedentes y 🔁 equivalencias incluidos</li>
-        <li>✍️ Columna en blanco para tus anotaciones</li>
-      </ul>
+      <div class="ph"><div class="pi">${x.ic}</div><div><h3>${x.t}</h3><div class="sm">Ciencias de la Comunicación</div></div></div>
+      <ul><li>📚 <b>${l.length}</b> experiencias educativas</li>
+      <li>🎓 <b>${TOT[x.p]}</b> créditos mínimos del plan</li>
+      <li>📌 Antecedentes y 🔁 equivalencias</li>
+      <li>🎯 Área terminal al final de la retícula</li></ul>
       <div class="acts"><button class="pv" onclick="preview('${x.p}')">👁️ Vista previa</button><button class="pp" onclick="preview('${x.p}',1)">🖨️ Imprimir</button></div></div>`;
-  }).join('');
-}
+  }).join('')}
 let cp='04';
 function preview(p,pr){
   cp=p;const x=PRINTS.find(v=>v.p===p);
   $('pvT').textContent='📄 Retícula · '+x.t+' · Ciencias de la Comunicación';
   $('pvB').innerHTML=retHTML(p);$('printRoot').innerHTML=retHTML(p);
   closeM('mPick');$('mPv').classList.add('on');document.body.style.overflow='hidden';
-  if(pr)setTimeout(doPrint,300);
-}
+  if(pr)setTimeout(doPrint,300)}
 function doPrint(){$('printRoot').innerHTML=retHTML(cp);setTimeout(()=>window.print(),80)}
 function openPick(){$('pickGrid').innerHTML=cardsHTML();$('mPick').classList.add('on');document.body.style.overflow='hidden'}
 function closeM(id){$(id).classList.remove('on');document.body.style.overflow=''}
 
-/* ═══════════ EXCEL ═══════════ */
-function headerIdx(rows){
-  for(let i=0;i<Math.min(15,rows.length);i++){
-    const r=(rows[i]||[]).map(c=>nz(String(c||'')));
-    if(r.some(c=>c.includes('area')&&c.includes('curso')))return i;
-  }
-  return -1;
-}
-function colOf(head,tests){
-  for(let i=0;i<head.length;i++){const h=nz(head[i]);if(tests.some(t=>h.includes(t)))return i}
-  return -1;
-}
-function splitList(v){
-  const s=String(v||'').trim();
+function headerIdx(rows){for(let i=0;i<Math.min(15,rows.length);i++){
+  const r=(rows[i]||[]).map(c=>nz(String(c||'')));if(r.some(c=>c.includes('area')&&c.includes('curso')))return i}return -1}
+function colOf(head,tests){for(let i=0;i<head.length;i++){const h=nz(head[i]);if(tests.some(t=>h.includes(t)))return i}return -1}
+function splitList(v){const s=String(v||'').trim();
   if(!s||/^(no|ninguno|n\/a|na|-|—|sin antecedente|sin)$/i.test(s))return [];
-  return s.split(/\s*(?:;|\+|\/|\||\by\b|\n)\s*/i).map(x=>up(x)).filter(x=>x&&x.length>2);
-}
+  return s.split(/\s*(?:;|\+|\/|\||\by\b|\n)\s*/i).map(x=>up(x)).filter(x=>x&&x.length>2)}
 function parseBook(wb,label){
   const res={};
   ['04','25'].forEach(p=>{
@@ -1087,66 +970,42 @@ function parseBook(wb,label){
       out.push({n,f:famOf(ar),ar,cr:isNaN(cr)?(seed?seed.cr:0):cr,
         ant:ant&&ant.length?ant:(seed?seed.ant:[]),
         eq:eq&&eq.length?eq:(seed?seed.eq:[]),
-        t:seed?seed.t:(eq&&eq.length?'directa':(p==='25'?'nueva':'sin'))});
-    }
-    if(out.length)res[p]=out;
-  });
+        t:seed?seed.t:(eq&&eq.length?'directa':(p==='25'?'nueva':'sin'))})}
+    if(out.length)res[p]=out});
   if(!res['04']&&!res['25'])return false;
   ['04','25'].forEach(p=>{if(res[p])D[p]=res[p]});
-  SRC=label;
-  rebuild();
+  SRC=label;rebuild();
+  $('xlsBtn').classList.add('loaded');$('xlsBtn').textContent='📊';
   toast('Excel cargado: '+((res['04']||[]).length)+' EEs 2004 · '+((res['25']||[]).length)+' EEs 2025');
-  return true;
-}
+  return true}
 function loadFile(file){
   if(!file)return;
   if(!/\.(xlsx|xls)$/i.test(file.name)){toast('Selecciona un archivo .xlsx o .xls','e');return}
   const fr=new FileReader();
-  fr.onload=ev=>{
-    try{
-      const wb=XLSX.read(new Uint8Array(ev.target.result),{type:'array'});
-      if(!parseBook(wb,file.name))toast('No se encontró la columna AREA DEL CURSO en hojas PLAN 2004 / PLAN 2025','e');
-    }catch(err){toast('No se pudo leer el archivo: '+err.message,'e')}
-  };
+  fr.onload=ev=>{try{const wb=XLSX.read(new Uint8Array(ev.target.result),{type:'array'});
+    if(!parseBook(wb,file.name))toast('No se encontró la columna AREA DEL CURSO en hojas PLAN 2004 / PLAN 2025','e')}
+    catch(err){toast('No se pudo leer el archivo: '+err.message,'e')}};
   fr.onerror=()=>toast('Error al leer el archivo','e');
-  fr.readAsArrayBuffer(file);
-}
+  fr.readAsArrayBuffer(file)}
 async function tryRemote(){
   if(!/^https?:$/.test(location.protocol))return;
-  const names=['EQUIVALENCIA 2004 -2025.xlsx','EQUIVALENCIA 2004-2025.xlsx','EQUIVALENCIA%202004%20-2025.xlsx','equivalencia.xlsx'];
-  for(const n of names){
-    try{
-      const r=await fetch(n,{cache:'no-store'});
-      if(!r.ok)continue;
-      const ct=r.headers.get('content-type')||'';
-      if(ct.includes('text/html'))continue;
-      const buf=await r.arrayBuffer();
-      const wb=XLSX.read(new Uint8Array(buf),{type:'array'});
-      if(parseBook(wb,decodeURIComponent(n)))return;
-    }catch(e){}
-  }
-}
+  for(const n of ['EQUIVALENCIA 2004 -2025.xlsx','EQUIVALENCIA 2004-2025.xlsx','EQUIVALENCIA%202004%20-2025.xlsx','equivalencia.xlsx']){
+    try{const r=await fetch(n,{cache:'no-store'});if(!r.ok)continue;
+      const ct=r.headers.get('content-type')||'';if(ct.includes('text/html'))continue;
+      const wb=XLSX.read(new Uint8Array(await r.arrayBuffer()),{type:'array'});
+      if(parseBook(wb,decodeURIComponent(n)))return}catch(e){}}}
 function rebuild(){
-  $('srcBadge').textContent=(SRC==='Catálogo integrado'?'📗 ':'📊 ')+SRC;
-  $('srcBadge').classList.toggle('live',SRC!=='Catálogo integrado');
-  $('st04').textContent=D['04'].length;$('st25').textContent=D['25'].length;
-  $('stEq').textContent=D['04'].filter(e=>e.t==='directa'&&e.eq.length).length;
-  $('stAnt').textContent=D['04'].filter(e=>e.ant.length).length+D['25'].filter(e=>e.ant.length).length;
   ['04','25'].forEach(p=>CB[p].refresh());
   if(cur.srcEE&&!find(cur.src,cur.srcEE.n))cur={a:null,b:null};
   paintFind();fillAreaFilter();renderCmp();
   $('printCards').innerHTML=cardsHTML();
-  if($('mPick').classList.contains('on'))$('pickGrid').innerHTML=cardsHTML();
-}
+  if($('mPick').classList.contains('on'))$('pickGrid').innerHTML=cardsHTML()}
 
-/* ═══════════ MODOS ═══════════ */
 function setMode(m){
   document.querySelectorAll('#modes button').forEach(b=>b.classList.toggle('on',b.dataset.m===m));
   $('pFind').classList.toggle('on',m==='find');$('pCmp').classList.toggle('on',m==='cmp');
-  if(m==='cmp')renderCmp();
-}
+  if(m==='cmp')renderCmp()}
 
-/* ═══════════ ESTRELLAS ═══════════ */
 const RK='facico.eq.rate';
 function rateState(){try{const s=JSON.parse(localStorage.getItem(RK)||'null');if(s&&s.n)return s}catch(e){}return{sum:5,n:1,mine:0}}
 function paintStars(hover){
@@ -1155,17 +1014,12 @@ function paintStars(hover){
   $('rscore').innerHTML=avg.toFixed(1)+' / 5<small>('+s.n+' voto'+(s.n===1?'':'s')+')'+(s.mine?' · ¡Gracias por calificar con '+s.mine+' ★!':'')+'</small>';
   $('stars').querySelectorAll('button').forEach(b=>{
     b.addEventListener('mouseenter',()=>paintStars(+b.dataset.v));
-    b.addEventListener('click',()=>{
-      const v=+b.dataset.v,st=rateState();
+    b.addEventListener('click',()=>{const v=+b.dataset.v,st=rateState();
       if(st.mine)st.sum+=v-st.mine;else{st.sum+=v;st.n++}
       st.mine=v;try{localStorage.setItem(RK,JSON.stringify(st))}catch(e){}
-      paintStars();toast('¡Gracias! Calificaste con '+v+' ★');
-    });
-  });
-}
+      paintStars();toast('¡Gracias! Calificaste con '+v+' ★')})})}
 $('stars').addEventListener('mouseleave',()=>paintStars());
 
-/* ═══════════ VISITAS ═══════════ */
 (function(){
   const VK='facico.eq.visits';let n=0;
   try{n=parseInt(localStorage.getItem(VK)||'0',10)||0}catch(e){}
@@ -1173,10 +1027,8 @@ $('stars').addEventListener('mouseleave',()=>paintStars());
   $('vnum').textContent=n.toLocaleString('es-MX');
   const img=$('vbadge'),fail=()=>{img.style.display='none';$('vfall').style.display='inline-flex'};
   img.addEventListener('error',fail);
-  setTimeout(()=>{if(!img.complete||img.naturalWidth===0)fail()},4500);
-})();
+  setTimeout(()=>{if(!img.complete||img.naturalWidth===0)fail()},4500)})();
 
-/* ═══════════ INIT ═══════════ */
 initCB('04');initCB('25');
 $('modes').addEventListener('click',e=>{const b=e.target.closest('button');if(b)setMode(b.dataset.m)});
 $('qCmp').addEventListener('input',e=>{C.q=e.target.value;renderCmp()});
@@ -1188,11 +1040,11 @@ $('fDens').addEventListener('change',e=>{C.dens=e.target.value;renderCmp()});
 $('tAnt').addEventListener('change',e=>{C.ant=e.target.checked;renderCmp()});
 $('tDir').addEventListener('change',e=>{C.dir=e.target.checked;renderCmp()});
 $('burger').addEventListener('click',()=>$('tnav').classList.toggle('on'));
+$('xlsBtn').addEventListener('click',()=>$('fileInput').click());
 document.querySelectorAll('.tnav a').forEach(a=>a.addEventListener('click',()=>{
   $('tnav').classList.remove('on');const h=a.getAttribute('href');
   if(h==='#comparar')setMode('cmp');if(h==='#consulta')setMode('find');
-  document.querySelectorAll('.tnav a').forEach(x=>x.classList.remove('on'));a.classList.add('on');
-}));
+  document.querySelectorAll('.tnav a').forEach(x=>x.classList.remove('on'));a.classList.add('on')}));
 document.querySelectorAll('.modal').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)closeM(m.id)}));
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeM('mPv');closeM('mPick')}});
 $('fileInput').addEventListener('change',e=>{loadFile(e.target.files[0]);e.target.value=''});
@@ -1203,8 +1055,7 @@ window.addEventListener('dragleave',e=>{e.preventDefault();dragN=Math.max(0,drag
 window.addEventListener('drop',e=>{e.preventDefault();dragN=0;$('drop').classList.remove('on');
   const f=e.dataTransfer&&e.dataTransfer.files&&e.dataTransfer.files[0];if(f)loadFile(f)});
 
-rebuild();paintStars();
-tryRemote();
+rebuild();paintStars();tryRemote();
 </script>
 </body>
 </html>
