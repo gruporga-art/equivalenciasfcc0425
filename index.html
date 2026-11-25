@@ -146,7 +146,6 @@ body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opa
 .blank h3{font-size:1.02rem;color:var(--ink2);margin-bottom:6px;font-weight:800}
 .blank p{font-size:.85rem;line-height:1.6;max-width:54ch;margin:0 auto}
 
-/* ══ TARJETA DE EQUIVALENCIA ══ */
 .result{display:none}.result.on{display:block;animation:rise .36s cubic-bezier(.2,.75,.3,1)}
 .eqcard{display:grid;grid-template-columns:1fr 96px 1fr;background:#fff;border:1.5px solid var(--line);border-radius:var(--rl);overflow:hidden;box-shadow:var(--s2)}
 .eqside{display:flex;flex-direction:column}
@@ -159,7 +158,7 @@ body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opa
 .eqh.nw{background:linear-gradient(130deg,var(--cyand),var(--cyan))}
 .eqh .k{font-size:.63rem;font-weight:900;letter-spacing:.13em;text-transform:uppercase;opacity:.92;margin-bottom:6px;display:flex;align-items:center;gap:7px}
 .eqh h3{font-size:1.06rem;font-weight:900;line-height:1.26;letter-spacing:.005em}
-.eqb{padding:16px 18px;display:flex;flex-direction:column;gap:14px;flex:1}
+.eqb{padding:16px 18px;display:flex;flex-direction:column;gap:12px;flex:1}
 .crbox{display:flex;align-items:center;gap:12px;background:linear-gradient(140deg,#f6f9fd,#eef3fa);border:1.5px solid var(--line);border-radius:12px;padding:11px 14px}
 .crbox .num{font-size:1.9rem;font-weight:900;line-height:1;color:var(--nv6);font-variant-numeric:tabular-nums}
 .eqside.s25 .crbox .num{color:var(--uvd)}
@@ -167,9 +166,6 @@ body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opa
 .crbox .ic{margin-left:auto;font-size:1.2rem;opacity:.5}
 .antb{border-radius:12px;padding:12px 14px;border:1.5px solid #ffdda1;border-left:4px solid var(--amber);background:var(--amberl)}
 .antb .ak{font-size:.64rem;font-weight:900;letter-spacing:.07em;text-transform:uppercase;color:var(--amberd);margin-bottom:8px;display:flex;align-items:center;gap:6px}
-.antb.none{background:#e6f7ec;border-color:#b9e6c8;border-left-color:var(--uv)}
-.antb.none .ak{color:var(--uvd)}
-.antb .ok{font-size:.82rem;font-weight:900;color:var(--uvd)}
 .antchips{display:flex;flex-wrap:wrap;gap:6px}
 .antchip{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1.5px solid #ffcf85;color:var(--nv7);
   border-radius:9px;padding:6px 10px;font-size:.74rem;font-weight:800;line-height:1.3;cursor:pointer;transition:.16s;text-align:left;font-family:inherit}
@@ -460,7 +456,7 @@ table.ret-t tr.tot td{background:#e7eef8!important;font-weight:900;color:var(--n
     <div class="blank" id="findBlank">
       <div class="big">⇄</div>
       <h3>Escribe o elige una Experiencia Educativa</h3>
-      <p>Puedes empezar por cualquiera de los dos planes. Verás su equivalente, los créditos y los antecedentes de ambas.</p>
+      <p>Puedes empezar por cualquiera de los dos planes. Verás su equivalente, los créditos y los antecedentes cuando existan.</p>
     </div>
 
     <div class="result" id="findResult"></div>
@@ -493,10 +489,10 @@ table.ret-t tr.tot td{background:#e7eef8!important;font-weight:900;color:var(--n
   <section class="sec" id="reticulas">
     <div class="sec-h">
       <div class="n">🖨️</div><h2>Retículas · Ciencias de la Comunicación</h2>
-      <p>Una retícula por plan con créditos, antecedentes y equivalencia. El área terminal se coloca al final.</p>
+      <p>Una retícula por plan con créditos, antecedentes y equivalencia. Orden: Básica · Disciplinaria · Elección libre · Terminal.</p>
     </div>
     <div class="pgrid" id="printCards"></div>
-    <div class="note"><b>📄 Al imprimir:</b> cada área comienza en una hoja nueva y el área terminal cierra la retícula. Sirve igual para Escolarizado y Abierto.</div>
+    <div class="note"><b>📄 Al imprimir:</b> cada área comienza en una hoja nueva. Elección libre va antes del área terminal, que cierra la retícula. Sirve igual para Escolarizado y Abierto.</div>
   </section>
 
   <footer class="foot">
@@ -703,8 +699,8 @@ const find=(p,n)=>D[p].find(x=>x.n===n)||null;
 function toast(m,k){const d=document.createElement('div');d.className='toast'+(k?' '+k:'');d.textContent=m;$('toasts').appendChild(d);
   setTimeout(()=>{d.style.transition='.3s';d.style.opacity='0';d.style.transform='translateX(26px)';setTimeout(()=>d.remove(),320)},3600)}
 function famOf(a){const t=nz(a);
-  if(t.includes('eleccion libre')||t.includes('libre'))return 'LIB';
-  if(t.includes('terminal'))return 'TER';
+  if(t.includes('libre')||t.includes('eleccion')||t.includes('optativ'))return 'LIB';
+  if(t.includes('terminal')||t.includes('acentuacion'))return 'TER';
   if(t.includes('disciplin'))return 'DIS';
   if(t.includes('basic'))return 'BAS';
   return 'DIS'}
@@ -715,9 +711,12 @@ function areaIcon(e){const t=nz(e.ar);
     if(t.includes('periodismo'))return '📰';
     return '🎓'}
   return FAM[e.f].ic}
-/* Terminal siempre al final; dentro de terminal, la genérica (titulación) cierra */
-function areaRank(ar){const f=famOf(ar);const base={BAS:0,DIS:1,LIB:2,TER:3}[f];
-  const sub=f==='TER'?(nz(ar).trim()==='area de formacion terminal'?1:0):0;return[base,sub]}
+/* Orden fijo: BÁSICA · DISCIPLINARIA · ELECCIÓN LIBRE · TERMINAL (genérica al final) */
+function areaRank(ar){
+  const f=famOf(ar);
+  const base={BAS:0,DIS:1,LIB:2,TER:3}[f];
+  const sub=f==='TER'?(nz(ar).replace(/\s+/g,' ').trim()==='area de formacion terminal'?1:0):0;
+  return[base,sub]}
 function areaOrder(p){const seen=[];D[p].forEach(e=>{if(!seen.includes(e.ar))seen.push(e.ar)});
   return seen.sort((a,b)=>{const x=areaRank(a),y=areaRank(b);return x[0]-y[0]||x[1]-y[1]||a.localeCompare(b,'es')})}
 
@@ -788,14 +787,13 @@ function sideHTML(p,e){
       <h3>${nv?'🆕 NO EXISTE EN ESTE PLAN':'⛔ SIN EQUIVALENTE'}</h3></div>
       <div class="eqb"><p class="eqmiss">${nv?'Esta experiencia fue creada en el Plan 2025 y no tiene origen en el Plan 2004. Consulta con tu tutor si puedes acreditarla como optativa.':'No hay experiencia correspondiente en este plan. La Secretaría de la Facultad debe indicarte la ruta de acreditación.'}</p></div></div>`;
   }
-  const ant=e.ant.length
-    ? `<div class="antchips">${e.ant.map(n=>`<button class="antchip" data-ant="${esc(n)}" data-p="${p}"><span class="ar">📌</span>${esc(up(n))}</button>`).join('')}</div>`
-    : `<div class="ok">✅ NO REQUIERE ANTECEDENTE</div>`;
+  const antBlock=e.ant.length?`<div class="antb"><div class="ak">📌 Antecedentes</div>
+      <div class="antchips">${e.ant.map(n=>`<button class="antchip" data-ant="${esc(n)}" data-p="${p}"><span class="ar">📌</span>${esc(up(n))}</button>`).join('')}</div></div>`:'';
   return `<div class="eqside s${p}">
     <div class="eqh p${p}"><div class="k">${is25?'🎓':'📜'} PLAN ${is25?'2025':'2004'}</div><h3>${esc(up(e.n))}</h3></div>
     <div class="eqb">
       <div class="crbox"><span class="num">${e.cr}</span><span class="lb">Créditos</span><span class="ic">🎓</span></div>
-      <div class="antb${e.ant.length?'':' none'}"><div class="ak">📌 Antecedentes</div>${ant}</div>
+      ${antBlock}
     </div></div>`;
 }
 function paintFind(){
@@ -921,7 +919,7 @@ function cardsHTML(){
       <ul><li>📚 <b>${l.length}</b> experiencias educativas</li>
       <li>🎓 <b>${TOT[x.p]}</b> créditos mínimos del plan</li>
       <li>📌 Antecedentes y 🔁 equivalencias</li>
-      <li>🎯 Área terminal al final de la retícula</li></ul>
+      <li>🎲 Elección libre antes del 🎯 área terminal</li></ul>
       <div class="acts"><button class="pv" onclick="preview('${x.p}')">👁️ Vista previa</button><button class="pp" onclick="preview('${x.p}',1)">🖨️ Imprimir</button></div></div>`;
   }).join('')}
 let cp='04';
