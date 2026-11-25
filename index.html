@@ -257,6 +257,12 @@ body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opa
 .feval:hover{transform:translateY(-2px);box-shadow:0 8px 19px rgba(124,58,237,.42)}
 .feval:active{transform:scale(.95)}
 .fpend{font-size:.68rem;font-weight:900;color:var(--amberd);background:var(--amberl);border:1px solid #ffdda1;padding:3px 9px;border-radius:20px;cursor:pointer}
+.fconn{border:1.5px solid var(--line2);background:#fff;color:var(--ink2);border-radius:9px;padding:6px 11px;font-family:inherit;
+  font-size:.7rem;font-weight:800;cursor:pointer;transition:.16s;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.fconn:hover{border-color:var(--nv5);color:var(--nv6)}
+.fconn .dot{width:7px;height:7px;border-radius:50%;background:var(--amber);box-shadow:0 0 0 3px rgba(245,158,11,.22)}
+.fconn.ok{border-color:#b9e6c8;color:var(--uvd);background:#f2fbf5}
+.fconn.ok .dot{background:var(--uv);box-shadow:0 0 0 3px rgba(40,167,69,.22)}
 .fvis{margin-left:auto;display:inline-flex;align-items:center;gap:8px}
 .fvis img{height:18px;border-radius:4px;display:block}
 .fvis .vf{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(120deg,var(--uv),var(--mint));color:#04240f;font-weight:900;font-size:.7rem;padding:3px 10px;border-radius:20px}
@@ -275,6 +281,7 @@ body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opa
 .mbox{background:#fff;border-radius:var(--rl);width:100%;max-width:1040px;max-height:90vh;display:flex;flex-direction:column;box-shadow:var(--s3);animation:pop .32s cubic-bezier(.2,.85,.3,1);overflow:hidden}
 @keyframes pop{from{opacity:0;transform:translateY(24px) scale(.97)}to{opacity:1;transform:none}}
 .mbox.eval{max-width:700px}
+.mbox.conn{max-width:760px}
 .mh{padding:14px 17px;background:linear-gradient(100deg,var(--nv7),var(--nv6));color:#fff;display:flex;align-items:center;gap:10px;flex-wrap:wrap;flex:none;position:relative;overflow:hidden}
 .mh::after{content:"";position:absolute;inset:0;background:radial-gradient(18rem 7rem at 90% -40%,rgba(32,201,151,.3),transparent 70%)}
 .mh>*{position:relative;z-index:2}
@@ -286,7 +293,6 @@ body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opa
 .mb.plain{background:#fff}
 .paper{background:#fff;box-shadow:var(--s2);padding:24px;max-width:940px;margin:0 auto;border-radius:6px}
 
-/* ══ INSTRUMENTO DE EVALUACIÓN ══ */
 .evwrap{padding:18px}
 .evlead{font-size:.86rem;line-height:1.6;color:var(--ink2);margin-bottom:14px}
 .evlead b{color:var(--nv7)}
@@ -341,7 +347,44 @@ body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opa
 .evdone .big{font-size:3.2rem;line-height:1;margin-bottom:12px}
 .evdone h3{font-size:1.22rem;font-weight:900;color:var(--uvd);margin-bottom:9px}
 .evdone p{font-size:.86rem;line-height:1.65;color:var(--ink2);max-width:48ch;margin:0 auto 16px}
-.evdone .mini{margin:0 auto}
+.evdone .acts{display:flex;gap:9px;justify-content:center;flex-wrap:wrap}
+
+/* ══ DESTINO ══ */
+.cnwrap{padding:18px}
+.cndest{display:flex;align-items:center;gap:12px;background:linear-gradient(140deg,#f2fbf5,#e9f6ef);border:1.5px solid #b9e6c8;
+  border-left:5px solid var(--uv);border-radius:12px;padding:13px 15px;margin-bottom:14px}
+.cndest .ic{width:40px;height:40px;flex:none;border-radius:11px;display:grid;place-items:center;font-size:1.2rem;color:#fff;background:linear-gradient(135deg,var(--uvd),var(--mint))}
+.cndest .tt{font-size:.9rem;font-weight:900;color:var(--uvd);line-height:1.25}
+.cndest .sb{font-size:.72rem;color:var(--ink2);font-weight:700;margin-top:3px}
+.cnstate{margin-left:auto;font-size:.68rem;font-weight:900;padding:4px 11px;border-radius:20px;white-space:nowrap}
+.cnstate.off{background:var(--amberl);color:var(--amberd);border:1.5px solid #ffdda1}
+.cnstate.on{background:#e6f7ec;color:var(--uvd);border:1.5px solid #b9e6c8}
+.cnsteps{display:flex;flex-direction:column;gap:10px;margin-bottom:14px}
+.cnstep{display:flex;gap:11px;align-items:flex-start;background:#f8fbfe;border:1.5px solid var(--line);border-radius:11px;padding:11px 13px}
+.cnstep b{flex:none;width:23px;height:23px;border-radius:50%;display:grid;place-items:center;font-size:.66rem;font-weight:900;color:#fff;background:linear-gradient(135deg,var(--nv5),var(--nv6))}
+.cnstep div{flex:1;font-size:.8rem;line-height:1.55;color:var(--ink2)}
+.cnstep div strong{color:var(--nv7)}
+.cnstep code{background:#e7eef8;color:var(--nv6);padding:1px 6px;border-radius:5px;font-size:.74rem;font-weight:800}
+.cncode{background:var(--nv9);color:#c8e6d4;border:1px solid #1e3a63;border-radius:11px;padding:13px;
+  font-family:ui-monospace,Consolas,'Courier New',monospace;font-size:.68rem;line-height:1.55;white-space:pre;overflow:auto;max-height:230px;margin:8px 0}
+.cncode::-webkit-scrollbar-track{background:#122c53}
+.cncode::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--mint),var(--uv));border-color:#122c53}
+.cnrow{display:flex;gap:9px;flex-wrap:wrap;align-items:center;margin-top:8px}
+.cnrow input{flex:1;min-width:240px;padding:11px 12px;border:2px solid var(--line2);border-radius:11px;font-family:ui-monospace,Consolas,monospace;font-size:.76rem;color:var(--ink);background:#fff}
+.cnrow input:focus{outline:none;border-color:var(--viol);box-shadow:0 0 0 4px rgba(124,58,237,.14)}
+.cnmsg{display:none;margin-top:12px;font-size:.79rem;line-height:1.55;border-radius:11px;padding:11px 13px;white-space:pre-wrap}
+.cnmsg.on{display:block}
+.cnmsg.ok{background:#e6f7ec;border:1.5px solid #b9e6c8;color:#14612c}
+.cnmsg.bad{background:var(--redl);border:1.5px solid #f5c2c2;color:#8b1f2b}
+.cnmsg.mid{background:var(--amberl);border:1.5px solid #ffdda1;color:#7a5806}
+.cnacts{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}
+.cnacts button{flex:1;min-width:130px;border:none;border-radius:11px;padding:11px;font-family:inherit;font-size:.8rem;font-weight:800;cursor:pointer;transition:.18s}
+.cnacts .copy{background:#eef3fa;color:var(--nv6);border:1.5px solid var(--line2)!important}
+.cnacts .copy:hover{background:var(--nv6);color:#fff}
+.cnacts .save{background:linear-gradient(130deg,#9061f2,var(--viold));color:#fff;box-shadow:0 6px 18px rgba(124,58,237,.3)}
+.cnacts .save:hover{transform:translateY(-2px)}
+.cnacts .clear{background:#fff;color:var(--redd);border:1.5px solid #f5c2c2!important}
+.cnacts .clear:hover{background:var(--red);color:#fff}
 
 .ret{font-size:.76rem;color:#111}
 .ret-h{text-align:center;border-bottom:3px solid var(--uv);padding-bottom:10px;margin-bottom:13px}
@@ -419,8 +462,9 @@ table.ret-t tr.tot td{background:#e7eef8!important;font-weight:900;color:var(--n
   .frate{gap:8px}
   .evroles{grid-template-columns:1fr}
   .evopts label{min-width:100%;text-align:left;padding:10px 12px}
-  .evwrap{padding:14px}
+  .evwrap,.cnwrap{padding:14px}
   .evprog{margin-left:0;width:100%}
+  .cnstate{margin-left:0}
 }
 @media(max-width:520px){.ctrls{grid-template-columns:1fr}.modes{flex-direction:column}}
 </style>
@@ -533,6 +577,7 @@ table.ret-t tr.tot td{background:#e7eef8!important;font-weight:900;color:var(--n
       <span class="thanks" id="rthanks" style="display:none"></span>
       <button class="feval" onclick="openEval()">📊 Evaluación completa</button>
       <span class="fpend" id="fpend" style="display:none" onclick="openEval()"></span>
+      <button class="fconn" id="fconn" onclick="openConn()"><span class="dot"></span><span id="fconnTxt">Destino</span></button>
       <span class="fvis">
         <img id="vbadge" alt="Contador de visitas" src="https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgruporga-art.github.io%2Ffacico-apps%2Fequivalencias%2F&countColor=%2328AD56&style=flat">
         <span class="vf" id="vfall" style="display:none">👁️ <span id="vnum">0</span></span>
@@ -564,6 +609,7 @@ table.ret-t tr.tot td{background:#e7eef8!important;font-weight:900;color:var(--n
       <div class="evpend" id="evpend">
         <span id="evpendTxt"></span>
         <button onclick="evFlush(true)">↻ Reintentar envío</button>
+        <button onclick="openConn()">⚙️ Destino</button>
         <button onclick="evQueueCSV()">📥 Descargar</button>
       </div>
 
@@ -577,7 +623,7 @@ table.ret-t tr.tot td{background:#e7eef8!important;font-weight:900;color:var(--n
             <span class="em">👨‍🏫</span><span class="tt">Docente</span><span class="sb">Tutor · Asesor académico</span>
           </button>
         </div>
-        <p class="evnote">Las respuestas se registran en la hoja <b>Evaluación</b> del libro <b>Equivalencia</b>. No se solicitan datos personales.</p>
+        <p class="evnote">Destino de las respuestas: libro <b>Equivalencia</b> · hoja <b>Evaluación</b>. No se solicitan datos personales.</p>
       </div>
 
       <div id="evStep2" style="display:none">
@@ -601,9 +647,53 @@ table.ret-t tr.tot td{background:#e7eef8!important;font-weight:900;color:var(--n
         <div class="evdone">
           <div class="big" id="evDoneIco">✅</div>
           <h3 id="evDoneTit">¡Gracias por tu evaluación!</h3>
-          <p id="evDoneMsg">Tu respuesta se registró en la hoja Evaluación del libro Equivalencia. Nos ayuda a mejorar el apoyo a la tutoría de la Facultad.</p>
-          <button class="mini g" onclick="closeM('mEval')">Cerrar</button>
+          <p id="evDoneMsg"></p>
+          <div class="acts">
+            <button class="mini g" onclick="closeM('mEval')">Cerrar</button>
+            <button class="mini v" id="evDoneCfg" style="display:none" onclick="openConn()">⚙️ Configurar destino</button>
+          </div>
         </div>
+      </div>
+    </div>
+  </div>
+</div></div>
+
+<div class="modal" id="mConn"><div class="mbox conn">
+  <div class="mh"><h3>⚙️ Destino de las evaluaciones</h3><button onclick="closeM('mConn')">✕ Cerrar</button></div>
+  <div class="mb plain">
+    <div class="cnwrap">
+      <div class="cndest">
+        <span class="ic">📗</span>
+        <div>
+          <div class="tt">Libro Equivalencia · hoja Evaluación</div>
+          <div class="sb" id="cnTarget">Sin endpoint verificado</div>
+        </div>
+        <span class="cnstate off" id="cnState">Pendiente</span>
+      </div>
+
+      <div class="cnsteps">
+        <div class="cnstep"><b>1</b><div>Abre el libro <strong>Equivalencia</strong> en Google Sheets y entra a <strong>Extensiones → Apps Script</strong>. Así el script queda vinculado a ese libro y las respuestas caen ahí.</div></div>
+        <div class="cnstep"><b>2</b><div>Borra el código del editor, pega el de abajo y guarda. Ejecuta una vez la función <code>probar</code> para autorizar permisos.</div>
+        </div>
+      </div>
+      <pre class="cncode" id="cnCode"></pre>
+      <div class="cnacts">
+        <button class="copy" onclick="cnCopy()">📋 Copiar código del script</button>
+      </div>
+
+      <div class="cnsteps" style="margin-top:14px">
+        <div class="cnstep"><b>3</b><div><strong>Implementar → Nueva implementación → Aplicación web</strong>. Ejecutar como <strong>Yo</strong> · Quién tiene acceso <strong>Cualquier persona</strong>. Copia la URL que termina en <code>/exec</code>.</div></div>
+        <div class="cnstep"><b>4</b><div>Pega la URL y verifica. Se comprueba que el libro destino sea <strong>Equivalencia</strong> antes de guardar.</div>
+          <div class="cnrow">
+            <input id="cnUrl" type="url" placeholder="https://script.google.com/macros/s/…/exec" autocomplete="off">
+          </div>
+        </div>
+      </div>
+
+      <div class="cnmsg" id="cnMsg"></div>
+      <div class="cnacts">
+        <button class="save" onclick="cnSave()">🔌 Probar y guardar destino</button>
+        <button class="clear" onclick="cnClear()">✕ Quitar destino</button>
       </div>
     </div>
   </div>
@@ -777,10 +867,70 @@ const TOT={'04':391,'25':380};
 const TL={directa:{i:'✅',t:'DIRECTA',c:'ok'},parcial:{i:'⚠️',t:'PARCIAL',c:'warn'},nueva:{i:'🆕',t:'NUEVA 2025',c:'new'},sin:{i:'⛔',t:'SIN EQUIV.',c:'no'}};
 const FUENTE='Catálogo curricular LCC · Planes 2004 y 2025';
 
-/* ══════════ EVALUACIÓN · destino ══════════ */
-const SCRIPT_URL='https://script.google.com/macros/s/AKfycbxs7BauP3gNdZx1hFmHj0oE8FtxLDFDKRWynxCRlMVTycmCzYznIwf2P56XK4_6OdWV/exec';
+/* ══════════ DESTINO DE EVALUACIONES ══════════ */
 const DEST={libro:'Equivalencia',hoja:'Evaluación',herramienta:'Equivalencias LCC'};
+const ENDK='facico.eqx.endpoint';
 const EQK='facico.eqx.queue';
+const APPS_SCRIPT=[
+"/* Equivalencias LCC · instalar DENTRO del libro Equivalencia */",
+"const HOJA = 'Evaluación';",
+"const HEAD = ['Fecha','Rol','P1','P2','P3','P4','P5','Comentarios','Contexto','Origen','Herramienta'];",
+"",
+"function libro_(){",
+"  const ss = SpreadsheetApp.getActiveSpreadsheet();",
+"  if(!ss) throw new Error('Abre Apps Script desde Extensiones dentro del libro Equivalencia.');",
+"  return ss;",
+"}",
+"function hoja_(){",
+"  const ss = libro_();",
+"  let h = ss.getSheetByName(HOJA);",
+"  if(!h){",
+"    const n = s => String(s).toLowerCase().normalize('NFD').replace(/[\\u0300-\\u036f]/g,'').trim();",
+"    h = ss.getSheets().find(x => n(x.getName()) === 'evaluacion');",
+"  }",
+"  if(!h) h = ss.insertSheet(HOJA);",
+"  if(h.getLastRow() === 0) h.appendRow(HEAD);",
+"  return h;",
+"}",
+"function json_(o){",
+"  const ss = libro_();",
+"  o.libro = ss.getName();",
+"  o.hoja = HOJA;",
+"  return ContentService.createTextOutput(JSON.stringify(o)).setMimeType(ContentService.MimeType.JSON);",
+"}",
+"function guardar_(d){",
+"  const h = hoja_();",
+"  h.appendRow([new Date(), d.rol||'', Number(d.p1)||'', Number(d.p2)||'', Number(d.p3)||'',",
+"    Number(d.p4)||'', Number(d.p5)||'', d.comentarios||'', d.contexto||'', d.origen||'',",
+"    d.herramienta||'Equivalencias LCC']);",
+"  SpreadsheetApp.flush();",
+"}",
+"function doGet(e){",
+"  try{",
+"    if(e && e.parameter && e.parameter.data){ guardar_(JSON.parse(e.parameter.data)); return json_({result:'success'}); }",
+"    const h = hoja_();",
+"    return json_({result:'ok', filas:h.getLastRow()});",
+"  }catch(err){ return json_({result:'error', error:String(err)}); }",
+"}",
+"function doPost(e){",
+"  try{",
+"    let d = null;",
+"    if(e && e.postData && e.postData.contents) d = JSON.parse(e.postData.contents);",
+"    else if(e && e.parameter && e.parameter.data) d = JSON.parse(e.parameter.data);",
+"    else if(e && e.parameter && e.parameter.rol) d = e.parameter;",
+"    if(!d) throw new Error('Sin datos');",
+"    guardar_(d);",
+"    return json_({result:'success'});",
+"  }catch(err){ return json_({result:'error', error:String(err)}); }",
+"}",
+"function probar(){",
+"  const h = hoja_();",
+"  h.appendRow([new Date(),'PRUEBA',5,5,5,5,5,'Fila de prueba, puedes borrarla','','local','Equivalencias LCC']);",
+"  SpreadsheetApp.flush();",
+"  Logger.log('Libro: '+libro_().getName()+' · hoja: '+h.getName()+' · filas: '+h.getLastRow());",
+"}"
+].join('\n');
+
 const INSTR={
 Estudiante:[
 '¿Qué tan fácil fue encontrar la equivalencia de tu Experiencia Educativa?',
@@ -1043,57 +1193,113 @@ function setMode(m){
   $('pFind').classList.toggle('on',m==='find');$('pCmp').classList.toggle('on',m==='cmp');
   if(m==='cmp')renderCmp()}
 
-/* ══════════ INSTRUMENTO DE EVALUACIÓN ══════════ */
+/* ══════════ ENDPOINT VERIFICADO ══════════ */
+function endGet(){try{const o=JSON.parse(localStorage.getItem(ENDK)||'null');
+  if(o&&o.url&&/^https:\/\/script\.google\.com\/macros\/s\/[^/]+\/exec/.test(o.url))return o}catch(e){}return null}
+function endSet(o){try{localStorage.setItem(ENDK,JSON.stringify(o))}catch(e){}}
+function endClear(){try{localStorage.removeItem(ENDK)}catch(e){}}
+function endPaint(){
+  const e=endGet(),btn=$('fconn'),txt=$('fconnTxt');
+  btn.classList.toggle('ok',!!e);
+  txt.textContent=e?('Equivalencia ✓'):'Destino';
+  $('cnState').className='cnstate '+(e?'on':'off');
+  $('cnState').textContent=e?'Verificado':'Pendiente';
+  $('cnTarget').textContent=e?('Conectado a '+e.libro+' · hoja '+e.hoja+(e.filas!=null?' · '+e.filas+' registros':'')):'Sin endpoint verificado';
+  if(e&&$('cnUrl'))$('cnUrl').value=e.url;
+}
+function cnMsg(kind,msg){const el=$('cnMsg');el.className='cnmsg on '+kind;el.textContent=msg}
+function openConn(){
+  $('cnCode').textContent=APPS_SCRIPT;
+  const e=endGet();$('cnUrl').value=e?e.url:'';
+  $('cnMsg').className='cnmsg';
+  endPaint();
+  $('mConn').classList.add('on');document.body.style.overflow='hidden';
+}
+function cnCopy(){
+  navigator.clipboard?.writeText(APPS_SCRIPT).then(()=>toast('Código del script copiado 📋'))
+    .catch(()=>{const ta=document.createElement('textarea');ta.value=APPS_SCRIPT;document.body.appendChild(ta);ta.select();
+      try{document.execCommand('copy');toast('Código del script copiado 📋')}catch(e){toast('Selecciona el código y cópialo','w')}ta.remove()});
+}
+function cnClear(){endClear();endPaint();$('cnUrl').value='';cnMsg('mid','Destino retirado. Las evaluaciones se guardarán en este dispositivo hasta configurar el libro Equivalencia.');eqRender()}
+async function cnSave(){
+  const u=$('cnUrl').value.trim();
+  if(!/^https:\/\/script\.google\.com\/macros\/s\/[^/]+\/exec/.test(u)){
+    cnMsg('bad','❌ URL inválida. Debe tener el formato:\nhttps://script.google.com/macros/s/AKfyc…/exec');return}
+  cnMsg('mid','⏳ Verificando el libro destino…');
+  try{
+    const r=await fetch(u,{cache:'no-store',redirect:'follow'});
+    const t=await r.text();
+    let j=null;try{j=JSON.parse(t)}catch(e){}
+    if(!j){cnMsg('bad','❌ La respuesta no es del script. Suele significar que el despliegue pide iniciar sesión.\n\nRevisa: Implementar → Nueva implementación → Quién tiene acceso: Cualquier persona.');return}
+    if(j.result==='error'){cnMsg('bad','❌ El script respondió:\n'+j.error+'\n\nInstálalo desde Extensiones → Apps Script dentro del libro Equivalencia.');return}
+    const libro=String(j.libro||'');
+    if(!/equivalencia/i.test(nz(libro))){
+      cnMsg('bad','⛔ Este endpoint escribe en el libro «'+(libro||'desconocido')+'», no en Equivalencia.\n\nAbre el libro Equivalencia y crea el script desde Extensiones → Apps Script dentro de ese libro. Así las respuestas caerán en el destino correcto.');return}
+    endSet({url:u,libro:libro,hoja:j.hoja||DEST.hoja,filas:j.filas});
+    endPaint();
+    cnMsg('ok','✅ Destino verificado: libro '+libro+' · hoja '+(j.hoja||DEST.hoja)+(j.filas!=null?' · '+j.filas+' registros':'')+'.\n\nLas evaluaciones se enviarán aquí. Enviando pendientes…');
+    toast('Destino verificado: Equivalencia ✔');
+    await evFlush(false);
+    eqRender();
+  }catch(err){
+    cnMsg('bad','❌ No se pudo contactar el endpoint ('+err.message+').\n\nVerifica que la URL termine en /exec y que el acceso sea «Cualquier persona».');
+  }
+}
+
+/* ══════════ INSTRUMENTO ══════════ */
 const EV={rol:'',busy:false};
 const eqGet=()=>{try{return JSON.parse(localStorage.getItem(EQK)||'[]')}catch(e){return []}};
 const eqSet=a=>{try{localStorage.setItem(EQK,JSON.stringify(a))}catch(e){}};
 function eqRender(){
-  const n=eqGet().length;
-  const fp=$('fpend');
+  const n=eqGet().length,fp=$('fpend');
   if(n){fp.style.display='inline-block';fp.textContent='📦 '+n+' pendiente'+(n===1?'':'s')}else fp.style.display='none';
-  const box=$('evpend');box.classList.toggle('on',n>0);
-  $('evpendTxt').textContent='📦 '+n+' evaluación'+(n===1?'':'es')+' guardada'+(n===1?'':'s')+' en este dispositivo, pendiente'+(n===1?'':'s')+' de envío.';
+  $('evpend').classList.toggle('on',n>0);
+  $('evpendTxt').textContent='📦 '+n+' evaluación'+(n===1?'':'es')+' guardada'+(n===1?'':'s')+' en este dispositivo.';
 }
 function eqPush(p){const a=eqGet();a.push(Object.assign({ts:new Date().toISOString()},p));eqSet(a);eqRender()}
 function evQueueCSV(){
   const q=eqGet();if(!q.length){toast('No hay evaluaciones pendientes','w');return}
   const rows=[['Fecha','Libro','Hoja','Herramienta','Rol','P1','P2','P3','P4','P5','Comentarios','Contexto','Origen']];
   q.forEach(d=>rows.push([d.ts,d.libro,d.hoja,d.herramienta,d.rol,d.p1,d.p2,d.p3,d.p4,d.p5,d.comentarios||'',d.contexto||'',d.origen||'']));
-  dl(rows,'evaluaciones-equivalencias-pendientes.csv');toast('Pendientes descargadas 📥')}
+  dl(rows,'evaluaciones-equivalencia-pendientes.csv');toast('Pendientes descargadas 📥')}
 async function eqDeliver(p){
-  const u=SCRIPT_URL;
+  const e=endGet();
+  if(!e)return{ok:false,reason:'nodest'};
+  const u=e.url;
   try{
     const r=await fetch(u,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(p),redirect:'follow'});
-    const t=await r.text();let j=null;try{j=JSON.parse(t)}catch(e){}
+    const t=await r.text();let j=null;try{j=JSON.parse(t)}catch(x){}
     if(j&&j.result==='success')return{ok:true,confirmed:true};
-  }catch(e){}
+    if(j&&j.result==='error')return{ok:false,reason:'script',detail:j.error};
+  }catch(x){}
   try{
     const r2=await fetch(u+'?data='+encodeURIComponent(JSON.stringify(p)),{redirect:'follow'});
-    const t2=await r2.text();let j2=null;try{j2=JSON.parse(t2)}catch(e){}
+    const t2=await r2.text();let j2=null;try{j2=JSON.parse(t2)}catch(x){}
     if(j2&&j2.result==='success')return{ok:true,confirmed:true};
-  }catch(e){}
-  try{if(navigator.sendBeacon&&navigator.sendBeacon(u,new Blob([JSON.stringify(p)],{type:'text/plain;charset=utf-8'})))return{ok:true}}catch(e){}
+  }catch(x){}
+  try{if(navigator.sendBeacon&&navigator.sendBeacon(u,new Blob([JSON.stringify(p)],{type:'text/plain;charset=utf-8'})))return{ok:true}}catch(x){}
   const reached=await new Promise(res=>{
     const img=new Image();const t=setTimeout(()=>res(false),9000);
     img.onload=img.onerror=()=>{clearTimeout(t);res(true)};
     img.src=u+'?data='+encodeURIComponent(JSON.stringify(p))+'&_='+Date.now();
   });
-  return reached?{ok:true}:{ok:false};
+  return reached?{ok:true}:{ok:false,reason:'network'};
 }
 async function evFlush(manual){
   const q=eqGet();if(!q.length){if(manual)toast('No hay evaluaciones pendientes');return}
-  if(manual)toast('Reintentando '+q.length+' evaluación(es)…');
+  if(!endGet()){if(manual){toast('Configura el destino: libro Equivalencia','w');openConn()}return}
+  if(manual)toast('Enviando '+q.length+' evaluación(es) a Equivalencia…');
   const rest=[];let sent=0;
   for(const it of q){const r=await eqDeliver(it);if(r.ok)sent++;else rest.push(it)}
   eqSet(rest);eqRender();
-  if(sent)toast(sent+' evaluación(es) enviada(s) ✔');
+  if(sent)toast(sent+' evaluación(es) registrada(s) en Equivalencia ✔');
   if(rest.length&&manual)toast(rest.length+' siguen pendientes. Intenta más tarde.','w');
 }
 function openEval(){evReset();eqRender();$('mEval').classList.add('on');document.body.style.overflow='hidden'}
 function evReset(){
   EV.rol='';EV.busy=false;
   $('evStep1').style.display='block';$('evStep2').style.display='none';$('evStep3').style.display='none';
-  $('evForm').reset();$('evCom').value='';$('evQs').innerHTML='';
+  $('evForm').reset();$('evCom').value='';$('evQs').innerHTML='';$('evDoneCfg').style.display='none';
 }
 function evRole(r){
   EV.rol=r;
@@ -1120,7 +1326,8 @@ function evProgress(){
   $('evFill').style.width=(n/5*100)+'%';
   $('evSend').disabled=n<5||EV.busy;
   $('evHint').textContent=n<5?('Falta'+(5-n===1?'':'n')+' '+(5-n)+' pregunta'+(5-n===1?'':'s')+' por responder.'):
-    '✅ Instrumento completo. Al enviar, tu respuesta se registra en la hoja Evaluación del libro Equivalencia.';
+    (endGet()?'✅ Instrumento completo. Se registrará en el libro Equivalencia · hoja Evaluación.'
+             :'✅ Instrumento completo. Se guardará en este dispositivo hasta verificar el destino Equivalencia.');
 }
 async function evSubmit(e){
   e.preventDefault();
@@ -1142,24 +1349,31 @@ async function evSubmit(e){
   const r=await eqDeliver(payload);
   EV.busy=false;$('evSend').textContent='Enviar evaluación';
   $('evStep2').style.display='none';$('evStep3').style.display='block';
+  $('evDoneCfg').style.display='none';
   if(r.ok){
     $('evDoneIco').textContent='✅';
     $('evDoneTit').textContent='¡Gracias por tu evaluación!';
-    $('evDoneMsg').textContent=r.confirmed
-      ?'Tu respuesta se registró en la hoja Evaluación del libro Equivalencia. Nos ayuda a mejorar el apoyo a la tutoría de la Facultad.'
-      :'Tu evaluación fue enviada a la hoja Evaluación del libro Equivalencia. Si no aparece de inmediato, revisa en unos segundos. ¡Gracias!';
-    toast('Evaluación registrada ✔');evFlush(false);
+    $('evDoneMsg').textContent='Tu respuesta se registró en el libro Equivalencia · hoja Evaluación. Nos ayuda a mejorar el apoyo a la tutoría de la Facultad.';
+    toast('Evaluación registrada en Equivalencia ✔');evFlush(false);
   }else{
     eqPush(payload);
-    $('evDoneIco').textContent='📦';
-    $('evDoneTit').textContent='Evaluación guardada';
-    $('evDoneMsg').textContent='No hubo conexión con la hoja de cálculo en este momento. Tu respuesta quedó guardada en este dispositivo y se enviará automáticamente cuando vuelva la conexión. ¡Gracias!';
-    toast('Evaluación guardada como pendiente 📦','w');
+    if(r.reason==='nodest'){
+      $('evDoneIco').textContent='📦';
+      $('evDoneTit').textContent='Evaluación guardada';
+      $('evDoneMsg').textContent='Tu respuesta quedó guardada en este dispositivo. Para que caiga en el libro Equivalencia · hoja Evaluación, configura el destino una sola vez.';
+      $('evDoneCfg').style.display='inline-block';
+      toast('Guardada. Configura el destino Equivalencia','w');
+    }else{
+      $('evDoneIco').textContent='📦';
+      $('evDoneTit').textContent='Evaluación guardada';
+      $('evDoneMsg').textContent='No hubo conexión con el libro Equivalencia en este momento. Tu respuesta quedó guardada y se enviará automáticamente cuando vuelva la conexión. ¡Gracias!';
+      toast('Evaluación guardada como pendiente 📦','w');
+    }
   }
   eqRender();
 }
 
-/* ══════════ ESTRELLAS RÁPIDAS ══════════ */
+/* ══════════ ESTRELLAS ══════════ */
 const RK='facico.eq.rate';
 function rateState(){try{const s=JSON.parse(localStorage.getItem(RK)||'null');if(s&&s.n)return s}catch(e){}return{sum:5,n:1,mine:0}}
 function paintStars(hover){
@@ -1176,7 +1390,7 @@ function paintStars(hover){
       paintStars();toast('¡Gracias! Calificaste con '+v+' ★')})})}
 $('stars').addEventListener('mouseleave',()=>paintStars());
 
-/* ══════════ CONTADOR DE VISITAS ══════════ */
+/* ══════════ VISITAS ══════════ */
 (function(){
   const VK='facico.eq.visits';let n=0;
   try{n=parseInt(localStorage.getItem(VK)||'0',10)||0}catch(e){}
@@ -1198,13 +1412,14 @@ $('fDens').addEventListener('change',e=>{C.dens=e.target.value;renderCmp()});
 $('tAnt').addEventListener('change',e=>{C.ant=e.target.checked;renderCmp()});
 $('tDir').addEventListener('change',e=>{C.dir=e.target.checked;renderCmp()});
 document.querySelectorAll('.modal').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)closeM(m.id)}));
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeM('mPv');closeM('mPick');closeM('mEval')}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeM('mPv');closeM('mPick');closeM('mEval');closeM('mConn')}});
 window.addEventListener('online',()=>evFlush(false));
 
 paintFind();fillAreaFilter();renderCmp();
 $('printCards').innerHTML=cardsHTML();
-paintStars();eqRender();
-setTimeout(()=>{if(eqGet().length)evFlush(false)},1600);
+$('cnCode').textContent=APPS_SCRIPT;
+paintStars();eqRender();endPaint();
+setTimeout(()=>{if(endGet()&&eqGet().length)evFlush(false)},1600);
 </script>
 </body>
 </html>
